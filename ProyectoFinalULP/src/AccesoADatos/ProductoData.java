@@ -54,8 +54,41 @@ public class ProductoData {
             Logger.getLogger(ProductoData.class.getName()).log(Level.SEVERE, null, ex);
         }
         }
+
+        
+        public Producto buscarProducto(int id){
+            Producto prod = null;
+            String sql = "SELECT nombre, descripcion, precioActual, stock, estado FROM productos WHERE idProducto=? AND estado =1";
+            PreparedStatement ps = null;
+            try {
+                ps = con.prepareStatement(sql);
+                ps.setInt(1, id);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    prod=new Producto();
+                    prod.setIdProducto(id);
+                    prod.setNombreProducto(rs.getString("nombre"));
+                    prod.setDescripcion(rs.getString("descripcion"));
+                    prod.setPrecioActual(rs.getInt("precioActual"));
+                    prod.setStock(rs.getInt("stock"));
+                    prod.setEstado(true);
+       
+                }else {
+                    JOptionPane.showMessageDialog(null, "No existe el producto");
+                    ps.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Producto. "+ex.getMessage()); 
+            }
+            return prod;
+        }
         
     }
     
     
 
+   
+//    public Alumno buscarAlumno(int id){
+//    Alumno alumno = null;
+//    String sql = "SELECT dni, apellido, nombre, fechaNacimiento FROM alumno WHERE idAlumno = ? AND estado = 1";
+//    PreparedStatement ps = null;
