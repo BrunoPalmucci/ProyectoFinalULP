@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package AccesoADatos;
 
 import Entidades.Producto;
@@ -15,10 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Bruno
- * 
+/**  
  *   Registrar productos: Los usuarios podrán agregar nuevos productos al inventario proporcionando información como nombre, descripción, precio y cantidad disponible. 
  *   Sería un plus adicional, si el sistema enviara un recordatorio emergente sobre aquellos productos por debajo del mínimo.
  */
@@ -31,7 +24,7 @@ public class ProductoData {
     }
         public void agregarProducto(Producto producto){
             String sql = "INSERT INTO productos (nombreProducto, descripcion, precioActual, stock, estado) VALUES (?, ?, ?, ?, ?)";
-        
+        //Agrega nuevo producto a la BD 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, producto.getNombreProducto());
@@ -57,6 +50,7 @@ public class ProductoData {
 
         
         public Producto buscarProducto(int id){
+            //busca un producto en la BD por su ID
             Producto prod = null;
             String sql = "SELECT nombre, descripcion, precioActual, stock, estado FROM productos WHERE idProducto=? AND estado =1";
             PreparedStatement ps = null;
@@ -83,12 +77,4 @@ public class ProductoData {
             return prod;
         }
         
-    }
-    
-    
-
-   
-//    public Alumno buscarAlumno(int id){
-//    Alumno alumno = null;
-//    String sql = "SELECT dni, apellido, nombre, fechaNacimiento FROM alumno WHERE idAlumno = ? AND estado = 1";
-//    PreparedStatement ps = null;
+    }       
