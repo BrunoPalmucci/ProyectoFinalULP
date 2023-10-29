@@ -52,7 +52,7 @@ public class ProductoData {
         public Producto buscarProducto(int id){
             //busca un producto en la BD por su ID
             Producto prod = null;
-            String sql = "SELECT nombre, descripcion, precioActual, stock, estado FROM productos WHERE idProducto=? AND estado =1";
+            String sql = "SELECT nombreProducto, descripcion, precioActual, stock, estado FROM productos WHERE idProducto=? AND estado =1";
             PreparedStatement ps = null;
             try {
                 ps = con.prepareStatement(sql);
@@ -61,7 +61,7 @@ public class ProductoData {
                 if (rs.next()) {
                     prod=new Producto();
                     prod.setIdProducto(id);
-                    prod.setNombreProducto(rs.getString("nombre"));
+                    prod.setNombreProducto(rs.getString("nombreProducto"));
                     prod.setDescripcion(rs.getString("descripcion"));
                     prod.setPrecioActual(rs.getInt("precioActual"));
                     prod.setStock(rs.getInt("stock"));
