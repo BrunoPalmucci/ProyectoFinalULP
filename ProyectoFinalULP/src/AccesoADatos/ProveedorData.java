@@ -3,7 +3,10 @@ package AccesoADatos;
 import Entidades.Proveedor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class ProveedorData {
@@ -56,4 +59,51 @@ public class ProveedorData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Proveedor: "+ex.getMessage());
         }
     }
+    
+    
+        public Proveedor obtenerProveedorPorId(int idProveedor) {
+        
+        Proveedor proveedor = null; //Se inicializa proveedor null para indicar q no se encontro ninguno
+        String sql = "SELECT idProveedor, razonSocial, domicilio, telefono FROM proveedores WHERE idProveedor = ?";
+        //el id proveedor se pasa como parametro
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idProveedor);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                proveedor = new Proveedor();
+                proveedor.setIdProveedor(rs.getInt("idProveedor"));
+                proveedor.setRazonSocial(rs.getString("razonSocial"));
+                proveedor.setDomicilio(rs.getString("domicilio"));
+                proveedor.setTelefono(rs.getString("telefono"));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Proveedor: "+ex.getMessage());            
+        }
+        return proveedor;
+        //si no se encuentra proveedor se devuelve null
+    }
+        
+            public List<Proveedor> obtenerProveedores() {
+                //se declara la lista y se inicializa vacia
+        List<Proveedor> proveedores = new ArrayList<>();
+        String sql = "SELECT idProveedor, razonSocial, domicilio, telefono FROM proveedores";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Proveedor proveedor = new Proveedor();
+                proveedor.setIdProveedor(rs.getInt("idProveedor"));
+                proveedor.setRazonSocial(rs.getString("razonSocial"));
+                proveedor.setDomicilio(rs.getString("domicilio"));
+                proveedor.setTelefono(rs.getString("telefono"));
+                proveedores.add(proveedor);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Proveedor: "+ex.getMessage());            
+        }
+        return proveedores;
+    }
+
+ 
 }
