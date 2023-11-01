@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import org.mariadb.jdbc.Statement;
 
 public class ProveedorData {
     Connection con;
@@ -21,11 +22,16 @@ public class ProveedorData {
         String sql = "INSERT INTO proveedores (razonSocial, domicilio, telefono) VALUES (?, ?, ?)";
 
         try {
-            PreparedStatement ps = con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, proveedor.getRazonSocial());
             ps.setString(2, proveedor.getDomicilio());
-            ps.setString(3, proveedor.getTelefono());
+            ps.setString(3, proveedor.getTelefono());                        
             ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                proveedor.setIdProveedor(rs.getInt(1));                
+                
+            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Proveedor: "+ex.getMessage());
         }

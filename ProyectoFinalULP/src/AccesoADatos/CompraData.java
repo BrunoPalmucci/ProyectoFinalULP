@@ -19,7 +19,7 @@ public class CompraData {
         con = Conexion.getConnection();
     }
 
-    public void agregarCompra(Compra compra, List<DetalleCompra> detallesCompra) {
+    public void agregarCompra(Compra compra) {
         //agrega compra y detalle 
         try {
             String sqlCompra = "INSERT INTO compras (idProveedor, fecha) VALUES (?, ?)";
@@ -28,23 +28,22 @@ public class CompraData {
             psCompra.setDate(2, java.sql.Date.valueOf(compra.getFecha()));
             psCompra.executeUpdate();
             ResultSet rs = psCompra.getGeneratedKeys();
-            int idCompra = -1;
+            int idCompra;
             if (rs.next()) {
                 idCompra = rs.getInt(1);
+                compra.setIdCompra(idCompra);
+            }
+            
+            psCompra.close();
             }
 
-            String sqlDetalle = "INSERT INTO detalles_compra (idCompra, idProducto, cantidad, precioCosto) VALUES (?, ?, ?, ?)";
-            for (DetalleCompra detalle : detallesCompra) {
-                PreparedStatement psDetalle = con.prepareStatement(sqlDetalle);
-                psDetalle.setInt(1, idCompra);
-                psDetalle.setInt(2, detalle.getProducto().getIdProducto());
-                psDetalle.setInt(3, detalle.getCantidad());
-                psDetalle.setDouble(4, detalle.getPrecioCosto());
-                psDetalle.executeUpdate();
-            }
-        } catch (SQLException ex) {
+             catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Compra: "+ex.getMessage());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error: "+e.getMessage());
+
         }
+        
     }
     
         public List<Compra> obtenerComprasPorProveedor(Proveedor proveedor) {
