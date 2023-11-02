@@ -66,6 +66,29 @@ public class CompraData {
         }
         return compras;
     }
+        
+        public Compra obtenerCompraPorId(int id) {
+        // Obtener todas las compras de un proveedor
+        Compra compra = null;
+        try {
+            String sql = "SELECT * FROM compras WHERE idCompra = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                compra = new Compra();
+                compra.setIdCompra(id);
+                Proveedor prov = new Proveedor();
+                prov.setIdProveedor(rs.getInt("idProveedor"));
+                compra.setProveedor(prov);
+                compra.setFecha(rs.getDate("fecha").toLocalDate());
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Compra: "+ex.getMessage());
+        }
+        return compra;
+    }
 
 
     
