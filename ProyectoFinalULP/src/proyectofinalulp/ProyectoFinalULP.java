@@ -47,6 +47,7 @@ public class ProyectoFinalULP {
     
     //nuevo producto
     Producto producto = new Producto("PRODUCTO A", "DESCRIPCION PRODUCTO A", 2220, 5, true);
+    productoData.agregarProducto(producto);
 
     if (producto.getIdProducto() > 0) {
             System.out.println("Producto agregado con éxito. ID del producto: " + producto.getIdProducto());
