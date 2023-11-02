@@ -4,10 +4,12 @@ import Entidades.Compra;
 import Entidades.DetalleCompra;
 import Entidades.Proveedor;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -89,7 +91,121 @@ public class CompraData {
         }
         return compra;
     }
-
-
+        
+        public List<Compra> obtenerComprasPorFecha(Compra compra){
+            List<Compra> compras = new ArrayList<>();
+            
+            try {
+                  String sql = "SELECT * FROM compras WHERE idCompra = ? AND fecha BETWEEN ? AND ?";
+                  PreparedStatement ps = con.prepareStatement(sql);
+                  ps.setInt(1, compra.getIdCompra());
+                  ps.setDate(2, Date.valueOf(compra.getFecha()));
+                  ps.setDate(3, Date.valueOf(compra.getFecha()));
+                  ResultSet rs = ps.executeQuery();
+                  while(rs.next()){
+                      Compra lista = new Compra();
+                      lista.setIdCompra(rs.getInt("idCompra"));
+                      lista.setFecha(rs.getDate("fecha").toLocalDate());
+                      compras.add(lista);
+                  }
+                  rs.close();
+                    ps.close();
+                  
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            
+            
+            return compras;
+        }
+//                String sql = "SELECT * FROM compras WHERE idProveedor = 1 AND `fecha` BETWEEN '2023-10-31' AND '2023-11-02'";
     
+        
+        public List<String> obtenerProveedoresDeProducto(String nombreProducto) {
+            List<String> proveedores = new ArrayList<>();
+
+           try {
+                     String sql = "SELECT DISTINCT p.proveedor " +
+                            "FROM compras AS c " +
+                            "INNER JOIN productos AS p ON c.idProducto = p.idProducto " +
+                            "WHERE p.nombreProducto = ?";
+
+               PreparedStatement ps = con.prepareStatement(sql);
+               ps.setString(1, nombreProducto);
+
+               ResultSet rs = ps.executeQuery();
+
+               while (rs.next()) {
+                   String proveedor = rs.getString("proveedor");
+                   proveedores.add(proveedor);
+               }
+
+               rs.close();
+               ps.close();
+           } catch (SQLException e) {
+               e.printStackTrace();
+           }
+
+            return proveedores;
+        }
+        
+        
+        public List<String> obtenerProductosMasCompradosEntreFechas(LocalDate fechaInicio, LocalDate fechaFin) {
+               List<String> productosMasComprados = new ArrayList<>();
+
+            try {
+                String sql = "SELECT p.nombreProducto, COUNT(*) as cantidadCompras " +
+                             "FROM compras AS c " +
+                             "INNER JOIN productos AS p ON c.idProducto = p.idProducto " +
+                             "WHERE c.fecha BETWEEN ? AND ? " +
+                             "GROUP BY p.nombreProducto " +
+                             "ORDER BY cantidadCompras DESC";
+
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setDate(1, Date.valueOf(fechaInicio));
+                ps.setDate(2, Date.valueOf(fechaFin));
+
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    String nombreProducto = rs.getString("nombreProducto");
+                    productosMasComprados.add(nombreProducto);
+                }
+
+                rs.close();
+                ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            return productosMasComprados;
+            }
+        
+        public List<String> obtenerProductosPorDebajoDelStockMinimo(int stockMinimo) {
+               List<String> productosPorDebajoDelStockMinimo = new ArrayList<>();
+
+            try {
+                String sql = "SELECT nombreProducto " +
+                             "FROM productos " +
+                             "WHERE stock < ?";
+
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, stockMinimo);
+
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    String nombreProducto = rs.getString("nombreProducto");
+                    productosPorDebajoDelStockMinimo.add(nombreProducto);
+                }
+
+                rs.close();
+                ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            return productosPorDebajoDelStockMinimo;
+        }
+        
 }
