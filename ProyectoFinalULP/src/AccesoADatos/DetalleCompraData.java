@@ -65,5 +65,55 @@ public class DetalleCompraData {
         return detalles;
     }
     
+    void agregarDetalleCompra(DetalleCompra detalle){
+        String sql = "INSERT INTO `detallecompra`( `idCompra`, `cantidad`, `precioCosto`, `idProducto`) "
+                   + "VALUES (?,?,?,?,?)";
+         try {
+            
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            
+            if (rs.next()) {
+              detalle.setIdDetalle(rs.getInt("idDetalleCompra"));
+            } 
+        ps.close();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de sql: " +ex.getMessage());
+        }
+    }
+    
+    List <Producto> productosPorCompra(Compra compra){
+        List <Producto> productos = new ArrayList<Producto>();
+        String sql = "SELECT * FROM productos JOIN detallecompra "
+                + "ON(detallecompra.idProducto = productos.idProducto) "
+                + "AND detallecompra.idCompra = 1;";
+        try {
+            
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            
+             ResultSet rs = ps.executeQuery();
+           
+            
+            while (rs.next()) {
+              Producto prod = new Producto(rs.getInt("idProducto"),
+              rs.getString("nombreProducto"),
+              rs.getDouble("precioActual"),
+              rs.getInt("stock"),
+              rs.getBoolean("estado"));
+              productos.add(prod);
+            } 
+        ps.close();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de sql: " +ex.getMessage());
+        }
+        return productos;
+    }
+    
+    
+    
 
 }
