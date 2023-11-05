@@ -87,8 +87,52 @@ public class ProyectoFinalULP {
 //        System.out.println(item.getPrecioCosto());
 //        System.out.println(item.getProducto().getNombreProducto());
 //    });
+
+////  MODIFICAR PROVEEDOR
+//        
+//    Proveedor proveedor = proveedorData.obtenerProveedorPorId(1); 
+//    proveedor.setRazonSocial("Nuevo Nombre"); 
+//    proveedorData.modificarProveedor(proveedor); 
 //
+////   ELIMINAR PROVEEDOR
 //
+//     int idProveedorAEliminar = 1; 
+//    proveedorData.eliminarProveedor(idProveedorAEliminar); 
+//    
+////  OBTENER PROVEEDORES
+//    
+//    List<Proveedor> proveedores = proveedorData.obtenerProveedores(); 
+//    for (Proveedor proveedor : proveedores) {
+//    System.out.println("ID: " + proveedor.getIdProveedor() + ", Nombre: " + proveedor.getRazonSocial());
+//}
+//    
+////    OBTENER PROVEEDORES DE UN PRODUCTO
+//
+//    String nombreProducto = "Nombre del Producto"; 
+//    List<String> proveedores = compraData.obtenerProveedoresDeProducto(nombreProducto); 
+//    for (String proveedor : proveedores) {
+//    System.out.println("Proveedor que provee " + nombreProducto + ": " + proveedor);
+//}
+//    
+////   PRODUCTOS MAS COMPRADOS ENTRE FECHAS
+//
+//    LocalDate fechaInicio = LocalDate.parse("2023-11-01"); 
+//    LocalDate fechaFin = LocalDate.parse("2023-12-31"); 
+//    List<String> productos = compraData.obtenerProductosMasCompradosEntreFechas(fechaInicio, fechaFin); 
+//    for (String producto : productos) {
+//    System.out.println("Producto más comprado entre " + fechaInicio + " y " + fechaFin + ": " + producto);
+//}
+//
+////    OBTENER PRODUCTOS DEBAJO DEL STOCK MINIMO
+//
+//    int stockMinimo = 10; 
+//    List<String> productos = compraData.obtenerProductosPorDebajoDelStockMinimo(stockMinimo); 
+//    for (String producto : productos) {
+//    System.out.println("Producto por debajo del stock mínimo (" + stockMinimo + "): " + producto);
+//}
+
+
+
 }
     
 }
