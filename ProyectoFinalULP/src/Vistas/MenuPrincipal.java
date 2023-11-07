@@ -15,8 +15,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
-        initComponents();
+        initComponents();                
     }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,10 +32,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        jmDetalleCompra = new javax.swing.JMenu();
+        jmProducto = new javax.swing.JMenu();
+        jmCompra = new javax.swing.JMenu();
+        jmProveedores = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -50,17 +52,37 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGap(0, 378, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Detalle Compras");
-        jMenuBar1.add(jMenu1);
+        jmDetalleCompra.setText("Detalle Compras");
+        jmDetalleCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmDetalleCompraActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jmDetalleCompra);
 
-        jMenu2.setText("Productos");
-        jMenuBar1.add(jMenu2);
+        jmProducto.setText("Productos");
+        jmProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmProductoActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jmProducto);
 
-        jMenu3.setText("Compras");
-        jMenuBar1.add(jMenu3);
+        jmCompra.setText("Compras");
+        jmCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmCompraActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jmCompra);
 
-        jMenu4.setText("Proveedores");
-        jMenuBar1.add(jMenu4);
+        jmProveedores.setText("Proveedores");
+        jmProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmProveedoresActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jmProveedores);
 
         setJMenuBar(jMenuBar1);
 
@@ -78,6 +100,41 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jmDetalleCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmDetalleCompraActionPerformed
+        limpiar();
+        DetalleComprasView dtc = new DetalleComprasView();
+        dtc.setVisible(true);
+        jDesktopPane1.add(dtc);
+        jDesktopPane1.moveToFront(dtc);    }//GEN-LAST:event_jmDetalleCompraActionPerformed
+
+    private void jmProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProveedoresActionPerformed
+        limpiar();
+        proveedoresView prov = new proveedoresView();
+        prov.setVisible(true);
+        jDesktopPane1.add(prov);
+        jDesktopPane1.moveToFront(prov);        
+    }//GEN-LAST:event_jmProveedoresActionPerformed
+
+    private void jmCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCompraActionPerformed
+        limpiar();
+        comprarProdView comp = new comprarProdView();
+        comp.setVisible(true);
+        jDesktopPane1.add(comp);
+        jDesktopPane1.moveToFront(comp); 
+    }//GEN-LAST:event_jmCompraActionPerformed
+
+    private void jmProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProductoActionPerformed
+        limpiar();
+        ProdAPedirView prodaped = new ProdAPedirView();
+        prodaped.setVisible(true);
+        jDesktopPane1.add(prodaped);
+        jDesktopPane1.moveToFront(prodaped); 
+        
+    }//GEN-LAST:event_jmProductoActionPerformed
+
+    private void limpiar(){
+        jDesktopPane1.repaint();
+    }
     /**
      * @param args the command line arguments
      */
@@ -115,11 +172,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu jmCompra;
+    private javax.swing.JMenu jmDetalleCompra;
+    private javax.swing.JMenu jmProducto;
+    private javax.swing.JMenu jmProveedores;
     // End of variables declaration//GEN-END:variables
 }
