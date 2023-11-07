@@ -44,10 +44,11 @@ public class ProyectoFinalULP {
     compraData.agregarCompra(compra);
 //    System.out.println("id de compra"+compra.getIdCompra());
 //    //obtenerCompra por ID
-    List<Compra> compras= compraData.obtenerComprasPorFecha(LocalDate.of(2023, Month.NOVEMBER, 02));
-        for (Compra compra1 : compras) {
-            System.out.println(compra1);
-        }
+   // List<Compra> compras= compraData.obtenerComprasPorFecha(LocalDate.of(2023, Month.NOVEMBER, 02));
+    //    for (Compra compra1 : compras) {
+     //       System.out.println(compra1);
+      //  }
+        System.out.println(compraData.obtenerProveedoresDeProducto("Sal"));
     
 //        System.out.println(compraData.obtenerCompraPorId(compra.getIdCompra()));
     

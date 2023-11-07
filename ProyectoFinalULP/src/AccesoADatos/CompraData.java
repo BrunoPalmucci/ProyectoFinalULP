@@ -128,14 +128,16 @@ public class CompraData {
 //                String sql = "SELECT * FROM compras WHERE idProveedor = 1 AND `fecha` BETWEEN '2023-10-31' AND '2023-11-02'";
     
         
-        public List<String> obtenerProveedoresDeProducto(String nombreProducto) {
-            List<String> proveedores = new ArrayList<>();
+        public List<Proveedor> obtenerProveedoresDeProducto(String nombreProducto) {
+            List<Proveedor> proveedores = new ArrayList<Proveedor>();
 
            try {
-                     String sql = "SELECT DISTINCT p.proveedor " +
-                            "FROM compras AS c " +
-                            "INNER JOIN productos AS p ON c.idProducto = p.idProducto " +
-                            "WHERE p.nombreProducto = ?";
+                     String sql = "SELECT DISTINCT p.idProveedor, p.razonSocial, p.domicilio, p.telefono "+
+                        "FROM proveedores p "+
+                        "JOIN compras c ON p.idProveedor = c.idProveedor "+
+                        "JOIN detallecompra dc ON c.idCompra = dc.idCompra "+
+                        "JOIN productos pr ON dc.idProducto = pr.idProducto "+
+                        "WHERE pr.nombreProducto = ? "; 
 
                PreparedStatement ps = con.prepareStatement(sql);
                ps.setString(1, nombreProducto);
@@ -143,8 +145,13 @@ public class CompraData {
                ResultSet rs = ps.executeQuery();
 
                while (rs.next()) {
-                   String proveedor = rs.getString("proveedor");
-                   proveedores.add(proveedor);
+                   Proveedor prov = new Proveedor();
+                    prov.setIdProveedor(rs.getInt("idProveedor"));
+                    prov.setDomicilio(rs.getString("domicilio"));
+                    prov.setRazonSocial(rs.getString("razonSocial"));
+                    prov.setTelefono(rs.getString("telefono"));
+                    proveedores.add(prov);
+                    
                }
 
                rs.close();
