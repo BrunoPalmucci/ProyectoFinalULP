@@ -92,23 +92,30 @@ public class CompraData {
         return compra;
     }
         
-        public List<Compra> obtenerComprasPorFecha(Compra compra){
+        public List<Compra> obtenerComprasPorFecha(LocalDate fecha){
             List<Compra> compras = new ArrayList<>();
             
             try {
-                  String sql = "SELECT * FROM compras WHERE idCompra = ? AND fecha BETWEEN ? AND ?";
+                  String sql = "SELECT * FROM compras JOIN proveedores ON "
+                          + "(compras.idProveedor = proveedores.idProveedor)"
+                          + " AND compras.fecha = ?";
                   PreparedStatement ps = con.prepareStatement(sql);
-                  ps.setInt(1, compra.getIdCompra());
-                  ps.setDate(2, Date.valueOf(compra.getFecha()));
-                  ps.setDate(3, Date.valueOf(compra.getFecha()));
+                  ps.setDate(1, Date.valueOf(fecha));
                   ResultSet rs = ps.executeQuery();
                   while(rs.next()){
-                      Compra lista = new Compra();
-                      lista.setIdCompra(rs.getInt("idCompra"));
-                      lista.setFecha(rs.getDate("fecha").toLocalDate());
-                      compras.add(lista);
+                      Compra compra = new Compra();
+                      Proveedor prov = new Proveedor();
+                      prov.setIdProveedor(rs.getInt("idProveedor"));
+                      prov.setDomicilio(rs.getString("domicilio"));
+                      prov.setRazonSocial(rs.getString("razonSocial"));
+                      prov.setTelefono(rs.getString("telefono"));
+                      
+                      compra.setIdCompra(rs.getInt("idCompra"));
+                      compra.setFecha(rs.getDate("fecha").toLocalDate());
+                      compra.setProveedor(prov);
+                      compras.add(compra);
                   }
-                  rs.close();
+                    rs.close();
                     ps.close();
                   
             } catch (SQLException e) {

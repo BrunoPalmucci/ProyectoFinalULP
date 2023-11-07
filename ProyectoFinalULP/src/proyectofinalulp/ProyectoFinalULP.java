@@ -12,6 +12,7 @@ import Entidades.Producto;
 import Entidades.Proveedor;
 import java.sql.Connection;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -27,22 +28,29 @@ public class ProyectoFinalULP {
         System.out.println(prD.buscarProducto(pr.getIdProducto()));
     */
         
-//    //crear instancia de compraData y proveedorData
-//    CompraData compraData = new CompraData();
-//    ProveedorData proveedorData = new ProveedorData();
-//    ProductoData productoData = new ProductoData();
+//crear instancia de compraData y proveedorData
+    CompraData compraData = new CompraData();
+  ProveedorData proveedorData = new ProveedorData();
+   ProductoData productoData = new ProductoData();
 //    
 //    //crear proveedor y agregarlo a bd
-//    Proveedor proveedor = new Proveedor("Musimundo", "Rivadavia 200", "334455");
-//    proveedorData.agregarProveedor(proveedor);
-//        System.out.println("ID del proveedor:");
+    Proveedor proveedor = new Proveedor("Musimundo", "Rivadavia 200", "334455");
+   proveedorData.agregarProveedor(proveedor);
+ //      System.out.println("ID del proveedor:");
 //        System.out.println(proveedor.getIdProveedor());
 //    
 //    //crear compra y agregarla a la base de datos
-//    Compra compra = new Compra(proveedor, LocalDate.now());
-//    compraData.agregarCompra(compra);
+    Compra compra = new Compra(proveedor, LocalDate.now());
+    compraData.agregarCompra(compra);
 //    System.out.println("id de compra"+compra.getIdCompra());
-//    
+//    //obtenerCompra por ID
+    List<Compra> compras= compraData.obtenerComprasPorFecha(LocalDate.of(2023, Month.NOVEMBER, 02));
+        for (Compra compra1 : compras) {
+            System.out.println(compra1);
+        }
+    
+//        System.out.println(compraData.obtenerCompraPorId(compra.getIdCompra()));
+    
 //    //obtener compras del proveedor creado
 //    List<Compra> comprasDelProveedor = compraData.obtenerComprasPorProveedor(proveedor);
 //    System.out.println("Compras del proveedor:"+comprasDelProveedor.get(0));
@@ -130,6 +138,8 @@ public class ProyectoFinalULP {
 //    for (String producto : productos) {
 //    System.out.println("Producto por debajo del stock mínimo (" + stockMinimo + "): " + producto);
 //}
+
+
 
 
 
