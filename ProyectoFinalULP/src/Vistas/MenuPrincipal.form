@@ -14,6 +14,7 @@
             <Property name="text" type="java.lang.String" value="Detalle Compras"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jmDetalleCompraMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmDetalleCompraActionPerformed"/>
           </Events>
         </Menu>
@@ -22,6 +23,7 @@
             <Property name="text" type="java.lang.String" value="Productos"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jmProductoMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmProductoActionPerformed"/>
           </Events>
         </Menu>
@@ -30,6 +32,7 @@
             <Property name="text" type="java.lang.String" value="Compras"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jmCompraMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmCompraActionPerformed"/>
           </Events>
         </Menu>
@@ -38,6 +41,7 @@
             <Property name="text" type="java.lang.String" value="Proveedores"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jmProveedoresMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmProveedoresActionPerformed"/>
           </Events>
         </Menu>
@@ -82,12 +86,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="578" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="719" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="378" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="478" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

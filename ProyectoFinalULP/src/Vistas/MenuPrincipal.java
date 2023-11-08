@@ -45,14 +45,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 578, Short.MAX_VALUE)
+            .addGap(0, 719, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 378, Short.MAX_VALUE)
+            .addGap(0, 478, Short.MAX_VALUE)
         );
 
         jmDetalleCompra.setText("Detalle Compras");
+        jmDetalleCompra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmDetalleCompraMouseClicked(evt);
+            }
+        });
         jmDetalleCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmDetalleCompraActionPerformed(evt);
@@ -61,6 +66,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jmDetalleCompra);
 
         jmProducto.setText("Productos");
+        jmProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmProductoMouseClicked(evt);
+            }
+        });
         jmProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmProductoActionPerformed(evt);
@@ -69,6 +79,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jmProducto);
 
         jmCompra.setText("Compras");
+        jmCompra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmCompraMouseClicked(evt);
+            }
+        });
         jmCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmCompraActionPerformed(evt);
@@ -77,6 +92,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jmCompra);
 
         jmProveedores.setText("Proveedores");
+        jmProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmProveedoresMouseClicked(evt);
+            }
+        });
         jmProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmProveedoresActionPerformed(evt);
@@ -129,10 +149,43 @@ public class MenuPrincipal extends javax.swing.JFrame {
         prodaped.setVisible(true);
         jDesktopPane1.add(prodaped);
         jDesktopPane1.moveToFront(prodaped); 
-        
+        System.out.println("Test");
     }//GEN-LAST:event_jmProductoActionPerformed
 
+    private void jmDetalleCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmDetalleCompraMouseClicked
+        limpiar();
+        DetalleComprasView dtc = new DetalleComprasView();
+        dtc.setVisible(true);
+        jDesktopPane1.add(dtc);
+        jDesktopPane1.moveToFront(dtc);  
+    }//GEN-LAST:event_jmDetalleCompraMouseClicked
+
+    private void jmProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmProductoMouseClicked
+        limpiar();
+        ProdAPedirView prodaped = new ProdAPedirView();
+        prodaped.setVisible(true);
+        jDesktopPane1.add(prodaped);
+        jDesktopPane1.moveToFront(prodaped); 
+    }//GEN-LAST:event_jmProductoMouseClicked
+
+    private void jmCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmCompraMouseClicked
+        limpiar();
+        comprarProdView comp = new comprarProdView();
+        comp.setVisible(true);
+        jDesktopPane1.add(comp);
+        jDesktopPane1.moveToFront(comp);
+    }//GEN-LAST:event_jmCompraMouseClicked
+
+    private void jmProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmProveedoresMouseClicked
+        limpiar();
+        proveedoresView prov = new proveedoresView();
+        prov.setVisible(true);
+        jDesktopPane1.add(prov);
+        jDesktopPane1.moveToFront(prov); 
+    }//GEN-LAST:event_jmProveedoresMouseClicked
+
     private void limpiar(){
+        jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
     }
     /**
