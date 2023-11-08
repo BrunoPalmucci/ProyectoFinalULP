@@ -89,7 +89,7 @@ public class DetalleCompraData {
         List <Producto> productos = new ArrayList<Producto>();
         String sql = "SELECT * FROM productos JOIN detallecompra "
                 + "ON(detallecompra.idProducto = productos.idProducto) "
-                + "AND detallecompra.idCompra = 1;";
+                + "AND detallecompra.idCompra = ?;";
         try {
             
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
