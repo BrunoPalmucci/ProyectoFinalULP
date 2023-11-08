@@ -37,6 +37,7 @@ public class CompraData {
             }
             
             psCompra.close();
+            JOptionPane.showMessageDialog(null, "Compra realizada con éxito.");
             }
 
              catch (SQLException ex) {

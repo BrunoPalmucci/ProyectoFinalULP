@@ -25,6 +25,8 @@ public class Proveedor {
     }
     
     
+    
+    
 
     public int getIdProveedor() {
         return idProveedor;

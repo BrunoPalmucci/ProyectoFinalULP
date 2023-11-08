@@ -67,7 +67,7 @@ public class DetalleCompraData {
     
     void agregarDetalleCompra(DetalleCompra detalle){
         String sql = "INSERT INTO `detallecompra`( `idCompra`, `cantidad`, `precioCosto`, `idProducto`) "
-                   + "VALUES (?,?,?,?,?)";
+                   + "VALUES (?,?,?,?)";
          try {
             
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
