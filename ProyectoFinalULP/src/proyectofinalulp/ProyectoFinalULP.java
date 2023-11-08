@@ -48,7 +48,8 @@ public class ProyectoFinalULP {
     //    for (Compra compra1 : compras) {
      //       System.out.println(compra1);
       //  }
-        System.out.println(compraData.obtenerProveedoresDeProducto("Sal"));
+        //System.out.println(compraData.obtenerProveedoresDeProducto("Sal"));
+        
     
 //        System.out.println(compraData.obtenerCompraPorId(compra.getIdCompra()));
     
@@ -139,11 +140,20 @@ public class ProyectoFinalULP {
 //    for (String producto : productos) {
 //    System.out.println("Producto por debajo del stock mínimo (" + stockMinimo + "): " + producto);
 //}
+//LocalDate fechaInicio = LocalDate.of(2023, 11, 1);
+//    LocalDate fechaFin = LocalDate.of(2023, 11, 30);
+//
+//    List<String> productosMasComprados = compraData.obtenerProductosMasCompradosEntreFechas(fechaInicio, fechaFin);
+//
+//    System.out.println("Los productos más comprados entre " + fechaInicio + " y " + fechaFin + " son:");
+//    for (String producto : productosMasComprados) {
+//        System.out.println(producto);
+//    }
+//}
 
 
 
 
-
-}
+//}
     
-}
+

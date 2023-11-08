@@ -168,12 +168,13 @@ public class CompraData {
                List<String> productosMasComprados = new ArrayList<>();
 
             try {
-                String sql = "SELECT p.nombreProducto, COUNT(*) as cantidadCompras " +
-                             "FROM compras AS c " +
-                             "INNER JOIN productos AS p ON c.idProducto = p.idProducto " +
+                String sql = "SELECT p.nombreProducto, SUM(dc.cantidad) AS totalComprado " +
+                             "FROM productos p " +
+                             "JOIN detallecompra dc ON p.idProducto = dc.idProducto " +
+                             "JOIN compras c ON dc.idCompra = c.idCompra " +
                              "WHERE c.fecha BETWEEN ? AND ? " +
                              "GROUP BY p.nombreProducto " +
-                             "ORDER BY cantidadCompras DESC";
+                             "ORDER BY totalComprado DESC ;";
 
                 PreparedStatement ps = con.prepareStatement(sql);
                 ps.setDate(1, Date.valueOf(fechaInicio));
@@ -189,7 +190,7 @@ public class CompraData {
                 rs.close();
                 ps.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                System.err.println("Error al ejecutar la consulta SQL: " + e.getMessage());
             }
 
             return productosMasComprados;
