@@ -35,9 +35,9 @@ public class CompraData {
                 idCompra = rs.getInt(1);
                 compra.setIdCompra(idCompra);
             }
-            
+            JOptionPane.showMessageDialog(null, "Pedido a compra realizado con éxito.");
             psCompra.close();
-            JOptionPane.showMessageDialog(null, "Compra realizada con éxito.");
+            
             }
 
              catch (SQLException ex) {

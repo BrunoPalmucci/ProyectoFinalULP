@@ -5,13 +5,19 @@
  */
 package Vistas;
 
+import AccesoADatos.CompraData;
 import AccesoADatos.Conexion;
+import AccesoADatos.DetalleCompraData;
 import AccesoADatos.ProveedorData;
+import Entidades.Compra;
 import Entidades.Proveedor;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 /**
@@ -21,6 +27,8 @@ import java.util.List;
 public class comprarProdView extends javax.swing.JInternalFrame {
     
     private ProveedorData provData;
+    private CompraData compData;
+    private DetalleCompraData detCompra;
     
     
     /**
@@ -29,6 +37,8 @@ public class comprarProdView extends javax.swing.JInternalFrame {
     public comprarProdView() {
         initComponents();
         provData = new ProveedorData();
+        compData = new CompraData();
+        detCompra = new DetalleCompraData();
         llenarComboProveedores();
     }
     Connection con;
@@ -74,6 +84,11 @@ public class comprarProdView extends javax.swing.JInternalFrame {
         jLabel1.setText("Pedido de compra");
 
         RealizarCompra.setText("REALIZAR PEDIDO DE COMPRA");
+        RealizarCompra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RealizarCompraMouseClicked(evt);
+            }
+        });
         RealizarCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RealizarCompraActionPerformed(evt);
@@ -213,6 +228,22 @@ public class comprarProdView extends javax.swing.JInternalFrame {
     private void botonSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMouseClicked
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_botonSalirMouseClicked
+
+    private void RealizarCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RealizarCompraMouseClicked
+        // TODO add your handling code here:
+        String proveedor = comboProveedor.getSelectedItem().toString();
+        java.util.Date utilDate = fechaCompra.getDate();
+        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+        LocalDate fecha = sqlDate.toLocalDate();
+        Proveedor proveedorObjeto = provData.obtenerProveedorPorNombre(proveedor);
+        Compra compra = new Compra();
+        compra.setProveedor(proveedorObjeto);
+        compra.setFecha(fecha);
+
+        compData.agregarCompra(compra);
+              
+        
+    }//GEN-LAST:event_RealizarCompraMouseClicked
     
     
     /**
@@ -245,4 +276,14 @@ public class comprarProdView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
+
+    private static class utilDate {
+
+        private static long getTime() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        public utilDate() {
+        }
+    }
 }
