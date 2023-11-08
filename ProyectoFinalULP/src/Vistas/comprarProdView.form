@@ -149,6 +149,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="SALIR"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonSalirMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="comboProveedor">
       <Properties>
