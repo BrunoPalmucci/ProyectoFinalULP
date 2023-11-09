@@ -67,11 +67,14 @@ public class DetalleCompraData {
     
     void agregarDetalleCompra(DetalleCompra detalle){
         String sql = "INSERT INTO `detallecompra`( `idCompra`, `cantidad`, `precioCosto`, `idProducto`) "
-                   + "VALUES (?,?,?,?,?)";
+                   + "VALUES (?,?,?,?)";
          try {
             
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            
+            ps.setInt(1, detalle.getCompra().getIdCompra());
+            ps.setInt(2, detalle.getCantidad());
+            ps.setDouble(3, detalle.getPrecioCosto());
+            ps.setInt(4, detalle.getProducto().getIdProducto());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             
@@ -89,12 +92,12 @@ public class DetalleCompraData {
         List <Producto> productos = new ArrayList<Producto>();
         String sql = "SELECT * FROM productos JOIN detallecompra "
                 + "ON(detallecompra.idProducto = productos.idProducto) "
-                + "AND detallecompra.idCompra = 1;";
+                + "AND detallecompra.idCompra = ?;";
         try {
             
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            
-             ResultSet rs = ps.executeQuery();
+            ps.setInt(1, compra.getIdCompra());
+            ResultSet rs = ps.executeQuery();
            
             
             while (rs.next()) {
