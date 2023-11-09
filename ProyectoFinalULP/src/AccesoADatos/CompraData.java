@@ -224,4 +224,25 @@ public class CompraData {
             return productosPorDebajoDelStockMinimo;
         }
         
+        public List<Integer> obtenerCompraPorId() {
+                List<Integer> listaIdPedido = new ArrayList<>();
+
+                try {
+                    String sql = "SELECT idCompra FROM compras";
+                    PreparedStatement ps = con.prepareStatement(sql);
+                    ResultSet rs = ps.executeQuery();
+
+                    while (rs.next()) {
+                        int idCompra = rs.getInt("idCompra");
+                        listaIdPedido.add(idCompra);
+                    }
+
+                    rs.close();
+                    ps.close();
+                } catch (SQLException e) {
+                    System.err.println("Error al obtener los ID de las compras: " + e.getMessage());
+                }
+
+                return listaIdPedido;
+}
 }

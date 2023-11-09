@@ -32,7 +32,7 @@ public class ProyectoFinalULP {
     CompraData compraData = new CompraData();
   ProveedorData proveedorData = new ProveedorData();
    ProductoData productoData = new ProductoData();
-//    
+        System.out.println(productoData.buscarProducto(1));
 //    //crear proveedor y agregarlo a bd
     Proveedor proveedor = new Proveedor("Musimundo", "Rivadavia 200", "334455");
    proveedorData.agregarProveedor(proveedor);

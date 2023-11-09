@@ -65,7 +65,7 @@ public class DetalleCompraData {
         return detalles;
     }
     
-    void agregarDetalleCompra(DetalleCompra detalle){
+   public void agregarDetalleCompra(DetalleCompra detalle){
         String sql = "INSERT INTO `detallecompra`( `idCompra`, `cantidad`, `precioCosto`, `idProducto`) "
                    + "VALUES (?,?,?,?)";
          try {
@@ -79,7 +79,7 @@ public class DetalleCompraData {
             ResultSet rs = ps.getGeneratedKeys();
             
             if (rs.next()) {
-              detalle.setIdDetalle(rs.getInt("idDetalleCompra"));
+              detalle.setIdDetalle(rs.getInt(1));
             } 
         ps.close();
             

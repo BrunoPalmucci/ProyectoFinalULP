@@ -8,6 +8,7 @@ public class DetalleCompra {
     private double precioCosto;
     private Compra compra;
     private Producto producto;
+    
 
     public DetalleCompra() {
     }
@@ -67,6 +68,12 @@ public class DetalleCompra {
         this.producto = producto;
     }
     
-    
+//    public void setIdProducto(int idProducto) {
+//        if (this.producto != null) {
+//            this.producto.setIdProducto(idProducto);
+//        } else {
+//            throw new IllegalStateException("El producto es null");
+//        }
+//    }
     
 }
