@@ -90,7 +90,7 @@ public class ProveedorData {
         //si no se encuentra proveedor se devuelve null
     }
         
-            public List<Proveedor> obtenerProveedores() {
+        public List<Proveedor> obtenerProveedores() {
                 //se declara la lista y se inicializa vacia
         List<Proveedor> proveedores = new ArrayList<>();
         String sql = "SELECT idProveedor, razonSocial, domicilio, telefono FROM proveedores";
@@ -110,6 +110,33 @@ public class ProveedorData {
         }
         return proveedores;
     }
+            
+        public Proveedor obtenerProveedorPorNombre(String nombreProveedor) {
+                   Proveedor proveedor = null;
+
+        try {
+            String sql = "SELECT * FROM proveedores WHERE razonSocial = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, nombreProveedor);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                proveedor = new Proveedor();
+                proveedor.setIdProveedor(rs.getInt("idProveedor"));
+                proveedor.setRazonSocial(rs.getString("razonSocial"));
+                proveedor.setDomicilio(rs.getString("domicilio"));
+                proveedor.setTelefono(rs.getString("telefono"));
+            }
+
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            System.err.println("Error al obtener el proveedor: " + e.getMessage());
+        }
+
+    return proveedor;
+}
 
  
 }
