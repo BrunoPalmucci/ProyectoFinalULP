@@ -16,6 +16,9 @@ public class proveedoresView extends javax.swing.JInternalFrame {
      */
     public proveedoresView() {
         initComponents();
+        int x = (int) (160/2);
+        int y = (int) (40 / 2);
+        this.setLocation(x, y);
     }
 
     /**

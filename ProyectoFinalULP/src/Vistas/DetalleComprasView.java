@@ -31,6 +31,9 @@ public class DetalleComprasView extends javax.swing.JInternalFrame {
         modelo = new DefaultTableModel();
         cargarCombo();
         armarTablaCompras();
+        int x = (int) (160/2);
+        int y = (int) (40 / 2);
+        this.setLocation(x, y);
     }
 
     /**

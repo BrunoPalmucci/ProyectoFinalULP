@@ -16,6 +16,9 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
      */
     public ProdAPedirView() {
         initComponents();
+        int x = (int) (160/2);
+        int y = (int) (40 / 2);
+        this.setLocation(x, y);
     }
 
     /**
