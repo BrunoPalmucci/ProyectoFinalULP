@@ -16,12 +16,28 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-
+import splashScreen.pantallaDeCarga;
+import Vistas.MenuPrincipal;
 
 public class ProyectoFinalULP {
-
+pantallaDeCarga pantallaCarga;
+MenuPrincipal menuPrincipal;
 
     public static void main(String[] args) {
+        
+//        pantallaDeCarga carga = new pantallaDeCarga();
+//        MenuPrincipal menu = new MenuPrincipal();
+//        int contador = 0;
+////        if (contador == 0) {
+////          carga.setVisible(true);
+////          contador = 1;
+////        }
+//        
+////        if (contador == 1) {
+//    menu.setVisible(true);
+//        }
+        
+        
         /*ProductoData prD = new ProductoData();
         Producto pr = new Producto("Papas Fritas","Son ricas :D",1599.99,666,true);
         prD.agregarProducto(pr);
@@ -29,19 +45,19 @@ public class ProyectoFinalULP {
     */
         
 //crear instancia de compraData y proveedorData
-    CompraData compraData = new CompraData();
-  ProveedorData proveedorData = new ProveedorData();
-   ProductoData productoData = new ProductoData();
-        System.out.println(productoData.buscarProducto(1));
-//    //crear proveedor y agregarlo a bd
-    Proveedor proveedor = new Proveedor("Musimundo", "Rivadavia 200", "334455");
-   proveedorData.agregarProveedor(proveedor);
- //      System.out.println("ID del proveedor:");
-//        System.out.println(proveedor.getIdProveedor());
-//    
-//    //crear compra y agregarla a la base de datos
-    Compra compra = new Compra(proveedor, LocalDate.now());
-    compraData.agregarCompra(compra);
+//    CompraData compraData = new CompraData();
+//  ProveedorData proveedorData = new ProveedorData();
+//   ProductoData productoData = new ProductoData();
+//        System.out.println(productoData.buscarProducto(1));
+////    //crear proveedor y agregarlo a bd
+//    Proveedor proveedor = new Proveedor("Musimundo", "Rivadavia 200", "334455");
+//   proveedorData.agregarProveedor(proveedor);
+// //      System.out.println("ID del proveedor:");
+////        System.out.println(proveedor.getIdProveedor());
+////    
+////    //crear compra y agregarla a la base de datos
+//    Compra compra = new Compra(proveedor, LocalDate.now());
+//    compraData.agregarCompra(compra);
 //    System.out.println("id de compra"+compra.getIdCompra());
 //    //obtenerCompra por ID
    // List<Compra> compras= compraData.obtenerComprasPorFecha(LocalDate.of(2023, Month.NOVEMBER, 02));

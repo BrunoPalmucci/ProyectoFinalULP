@@ -235,7 +235,7 @@ public class comprarProdView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonSalir)
                     .addComponent(botonCOMPRAR))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -276,8 +276,8 @@ public class comprarProdView extends javax.swing.JInternalFrame {
     private void botonCOMPRARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCOMPRARMouseClicked
         // TODO add your handling code here:
         
-         try {
-            int idCompra = Integer.parseInt(comboIdCompra.getSelectedItem().toString());
+        try {
+        int idCompra = Integer.parseInt(comboIdCompra.getSelectedItem().toString());
         int cantidad = Integer.parseInt(textoCantidad.getText());
         double precioCosto = Double.parseDouble(textoPrecioCosto.getText());
         int idProducto = Integer.parseInt(textoIdProducto.getText());
@@ -292,7 +292,7 @@ public class comprarProdView extends javax.swing.JInternalFrame {
 
        //detalle.getProducto().setIdProducto(idProducto);
        //detalle.setIdProducto(producto.getIdProducto());
-
+       
          detalle.setProducto(producto);
              if (producto !=null) {
                  detCompraData.agregarDetalleCompra(detalle);
