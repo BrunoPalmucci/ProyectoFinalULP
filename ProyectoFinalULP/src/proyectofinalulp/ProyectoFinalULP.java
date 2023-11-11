@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import splashScreen.pantallaDeCarga;
 import Vistas.MenuPrincipal;
+import javax.swing.JOptionPane;
 
 public class ProyectoFinalULP {
 pantallaDeCarga pantallaCarga;
@@ -25,6 +26,52 @@ MenuPrincipal menuPrincipal;
 
     public static void main(String[] args) {
         
+        
+        // Crear una instancia de la pantalla de carga
+        final pantallaDeCarga sp = new pantallaDeCarga();
+        
+        // Mostrar la pantalla de carga
+        sp.setVisible(true);
+        
+        // Crear un nuevo hilo para actualizar la interfaz gráfica
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    for(int i = 0; i<101;i++){
+                        Thread.sleep(50);
+                        sp.setPorcentajeCargado(i+ "%");
+                        if (i == 10) {
+                            sp.setTextoCargando("Cargando módulos...");
+                        }
+                        if (i == 20) {
+                            sp.setTextoCargando("Módulos cargados...");
+                        }
+                        if (i == 50) {
+                            sp.setTextoCargando("Conectando a base de datos...");
+                        }
+                        if (i == 70) {
+                            sp.setTextoCargando("Conexión establecida...");
+                        }
+                        if (i == 80) {
+                            sp.setTextoCargando("Lanzando aplicación...");
+                        }
+                        sp.setBarraProgreso(i);
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+                sp.setVisible(false);
+                
+                // Crear una instancia del menú principal
+                MenuPrincipal menuPrincipal = new MenuPrincipal();
+                
+                // Mostrar el menú principal
+                menuPrincipal.setVisible(true);
+            }
+        }).start();
+    }
+        
+      
 //        pantallaDeCarga carga = new pantallaDeCarga();
 //        MenuPrincipal menu = new MenuPrincipal();
 //        int contador = 0;
@@ -172,6 +219,4 @@ MenuPrincipal menuPrincipal;
 
 //}
     }
-}
-
 
