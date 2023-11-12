@@ -111,6 +111,11 @@ public class comprarProdView extends javax.swing.JInternalFrame {
                 botonSalirMouseClicked(evt);
             }
         });
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
 
         comboProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -258,7 +263,8 @@ public class comprarProdView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_textoCantidadActionPerformed
 
     private void botonSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMouseClicked
-        dispose();        // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_botonSalirMouseClicked
 
     private void RealizarCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RealizarCompraMouseClicked
@@ -335,6 +341,10 @@ public class comprarProdView extends javax.swing.JInternalFrame {
             evt.consume();
         }
     }//GEN-LAST:event_textoIdProductoKeyTyped
+
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonSalirActionPerformed
     
     
     /**

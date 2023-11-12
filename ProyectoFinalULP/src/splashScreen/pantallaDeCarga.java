@@ -148,7 +148,7 @@ public class pantallaDeCarga extends javax.swing.JFrame {
         
         try {
             for(int i = 0; i<101;i++){
-                Thread.sleep(50);
+                Thread.sleep(30);
                 sp.porcentajeCargado.setText(i+ "%");
                 if (i == 10) {
                     sp.textoCargando.setText("Cargando módulos...");

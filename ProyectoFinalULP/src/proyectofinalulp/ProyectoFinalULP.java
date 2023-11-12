@@ -39,7 +39,7 @@ MenuPrincipal menuPrincipal;
             public void run() {
                 try {
                     for(int i = 0; i<101;i++){
-                        Thread.sleep(50);
+                        Thread.sleep(30);
                         sp.setPorcentajeCargado(i+ "%");
                         if (i == 10) {
                             sp.setTextoCargando("Cargando módulos...");

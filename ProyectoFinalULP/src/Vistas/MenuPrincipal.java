@@ -14,15 +14,28 @@ import splashScreen.pantallaDeCarga;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
     private pantallaDeCarga pantallaCargar;
+    private DetalleComprasView dtc= new DetalleComprasView();
+    private proveedoresView prov= new proveedoresView();
+    private comprarProdView comp= new comprarProdView();
+    private ProdAPedirView prodaped = new ProdAPedirView();
+    
+    
+    
     /**
      * Creates new form MenuPrincipal
      */
+    
   
     public MenuPrincipal() {
         
         
        
-        initComponents();            
+        initComponents();
+         jDesktopPane1.add(dtc);
+        jDesktopPane1.add(prov);
+         jDesktopPane1.add(comp);
+        jDesktopPane1.add(prodaped);
+       
        //  jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoJPG.jpg"))); //hacerlo a mano si falla en el init componets
                                                                                                         //(PROBLEMA DE NEATBEANS al buscar la ruta, no lo encuentra)
     }
@@ -140,73 +153,82 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jmDetalleCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmDetalleCompraActionPerformed
-        limpiar();
-        DetalleComprasView dtc = new DetalleComprasView();
-        dtc.setVisible(true);
-        jDesktopPane1.add(dtc);
-        jDesktopPane1.moveToFront(dtc);    }//GEN-LAST:event_jmDetalleCompraActionPerformed
-
     private void jmProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProveedoresActionPerformed
-        limpiar();
-        proveedoresView prov = new proveedoresView();
-        prov.setVisible(true);
-        jDesktopPane1.add(prov);
-        jDesktopPane1.moveToFront(prov);        
+       
     }//GEN-LAST:event_jmProveedoresActionPerformed
 
     private void jmCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCompraActionPerformed
-        limpiar();
-        comprarProdView comp = new comprarProdView();
-        comp.setVisible(true);
-        jDesktopPane1.add(comp);
-        jDesktopPane1.moveToFront(comp); 
+       
     }//GEN-LAST:event_jmCompraActionPerformed
 
     private void jmProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProductoActionPerformed
-        limpiar();
-        ProdAPedirView prodaped = new ProdAPedirView();
-        prodaped.setVisible(true);
-        jDesktopPane1.add(prodaped);
-        jDesktopPane1.moveToFront(prodaped); 
-        System.out.println("Test");
+         
     }//GEN-LAST:event_jmProductoActionPerformed
-
-    private void jmDetalleCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmDetalleCompraMouseClicked
-        limpiar();
-        DetalleComprasView dtc = new DetalleComprasView();
-        dtc.setVisible(true);
-        jDesktopPane1.add(dtc);
-        jDesktopPane1.moveToFront(dtc);  
-    }//GEN-LAST:event_jmDetalleCompraMouseClicked
 
     private void jmProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmProductoMouseClicked
         limpiar();
-        ProdAPedirView prodaped = new ProdAPedirView();
+        if(prodaped.isClosed()){
+            jDesktopPane1.remove(prodaped);
+            prodaped = new ProdAPedirView();
+            jDesktopPane1.add(prodaped);
+        }
         prodaped.setVisible(true);
-        jDesktopPane1.add(prodaped);
-        jDesktopPane1.moveToFront(prodaped); 
+        
+        jDesktopPane1.moveToFront(prodaped);
     }//GEN-LAST:event_jmProductoMouseClicked
 
     private void jmCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmCompraMouseClicked
         limpiar();
-        comprarProdView comp = new comprarProdView();
+        if(comp.isClosed()){
+            jDesktopPane1.remove(comp);
+            comp = new comprarProdView();
+            jDesktopPane1.add(comp);
+        }
         comp.setVisible(true);
-        jDesktopPane1.add(comp);
-        jDesktopPane1.moveToFront(comp);
+        jDesktopPane1.moveToFront(comp); 
+
     }//GEN-LAST:event_jmCompraMouseClicked
 
     private void jmProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmProveedoresMouseClicked
-        limpiar();
-        proveedoresView prov = new proveedoresView();
-        prov.setVisible(true);
-        jDesktopPane1.add(prov);
-        jDesktopPane1.moveToFront(prov); 
+      limpiar();
+      if(prov.isClosed()){
+          jDesktopPane1.remove(prov);
+            prov = new proveedoresView();  
+            jDesktopPane1.add(prov);
+      }
+         prov.setVisible(true);
+            jDesktopPane1.moveToFront(prov);   
     }//GEN-LAST:event_jmProveedoresMouseClicked
 
+    private void jmDetalleCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmDetalleCompraActionPerformed
+  
+    }//GEN-LAST:event_jmDetalleCompraActionPerformed
+
+    private void jmDetalleCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmDetalleCompraMouseClicked
+        limpiar();
+        if(dtc.isClosed()){
+            jDesktopPane1.remove(dtc);
+        dtc = new DetalleComprasView();
+        jDesktopPane1.add(dtc);
+        }
+        
+        dtc.setVisible(true);
+        jDesktopPane1.moveToFront(dtc);
+        
+    }//GEN-LAST:event_jmDetalleCompraMouseClicked
+
     private void limpiar(){
+        dtc.setVisible(false);
+        //dtc.dispose();
+        prov.setVisible(false);
+        //prov.dispose();
+        comp.setVisible(false);
+        //comp.dispose();
+        prodaped.setVisible(false);
+        //prodaped.dispose();
+    
         //jDesktopPane1.removeAll();
-        jDesktopPane1.repaint();
+        //jDesktopPane1.repaint();
     }
     /**
      * @param args the command line arguments

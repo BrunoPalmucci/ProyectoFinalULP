@@ -103,7 +103,7 @@ public class ProveedorData {
         public List<Proveedor> obtenerProveedores() {
                 //se declara la lista y se inicializa vacia
         List<Proveedor> proveedores = new ArrayList<>();
-        String sql = "SELECT idProveedor, razonSocial, domicilio, telefono FROM proveedores";
+        String sql = "SELECT idProveedor, razonSocial, domicilio, telefono FROM proveedores WHERE estado = 1";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
