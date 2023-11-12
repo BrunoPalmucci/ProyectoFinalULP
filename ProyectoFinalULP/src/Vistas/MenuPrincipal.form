@@ -10,18 +10,8 @@
     <Component class="javax.swing.JLabel" name="fondoMenu">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vistas/imagenes/fondo_1.png"/>
-        </Property>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vistas/imagenes/fondo_1.png"/>
-        </Property>
-      </Properties>
     </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
@@ -102,7 +92,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jLabel3" alignment="0" pref="603" max="32767" attributes="0"/>
+              <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -115,7 +105,7 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Vistas/imagenes/fondo_1.png"/>
+              <Image iconType="3" name="/Imagenes/fondo.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel3"/>
           </Properties>
