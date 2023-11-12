@@ -32,9 +32,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
        
         initComponents();
          jDesktopPane1.add(dtc);
-        jDesktopPane1.add(prov);
+         jDesktopPane1.add(prov);
          jDesktopPane1.add(comp);
-        jDesktopPane1.add(prodaped);
+         jDesktopPane1.add(prodaped);
        
        //  jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoJPG.jpg"))); //hacerlo a mano si falla en el init componets
                                                                                                         //(PROBLEMA DE NEATBEANS al buscar la ruta, no lo encuentra)
@@ -172,9 +172,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
             prodaped = new ProdAPedirView();
             jDesktopPane1.add(prodaped);
         }
-        prodaped.setVisible(true);
+             prodaped.setVisible(true);
         
-        jDesktopPane1.moveToFront(prodaped);
+            jDesktopPane1.moveToFront(prodaped);
     }//GEN-LAST:event_jmProductoMouseClicked
 
     private void jmCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmCompraMouseClicked
@@ -184,19 +184,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
             comp = new comprarProdView();
             jDesktopPane1.add(comp);
         }
-        comp.setVisible(true);
-        jDesktopPane1.moveToFront(comp); 
+            comp.setVisible(true);
+            jDesktopPane1.moveToFront(comp); 
 
     }//GEN-LAST:event_jmCompraMouseClicked
 
     private void jmProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmProveedoresMouseClicked
       limpiar();
       if(prov.isClosed()){
-          jDesktopPane1.remove(prov);
+            jDesktopPane1.remove(prov);
             prov = new proveedoresView();  
             jDesktopPane1.add(prov);
       }
-         prov.setVisible(true);
+            prov.setVisible(true);
             jDesktopPane1.moveToFront(prov);   
     }//GEN-LAST:event_jmProveedoresMouseClicked
 
@@ -208,12 +208,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         limpiar();
         if(dtc.isClosed()){
             jDesktopPane1.remove(dtc);
-        dtc = new DetalleComprasView();
-        jDesktopPane1.add(dtc);
+            dtc = new DetalleComprasView();
+            jDesktopPane1.add(dtc);
         }
         
-        dtc.setVisible(true);
-        jDesktopPane1.moveToFront(dtc);
+            dtc.setVisible(true);
+            jDesktopPane1.moveToFront(dtc);
         
     }//GEN-LAST:event_jmDetalleCompraMouseClicked
 
@@ -225,8 +225,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         comp.setVisible(false);
         //comp.dispose();
         prodaped.setVisible(false);
+        
         //prodaped.dispose();
-    
         //jDesktopPane1.removeAll();
         //jDesktopPane1.repaint();
     }
