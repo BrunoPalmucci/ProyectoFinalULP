@@ -16,6 +16,24 @@ public class ProveedorData {
     public ProveedorData() {
         con = Conexion.getConnection();
     }
+    
+    public void configurarClaveExterna(){
+        //Metodo realizado para que deje eliminar proveedores. No deja sino ya que idProveedores
+        //es una clave externa en la tabla Compras. Entonces se usa "ON DELETE CASCADE"
+        //para cuando se elimine un proveedores se eliminen todas las entradas relacionadas en compras
+        String sql = "ALTER TABLE compras " +
+                         "DROP FOREIGN KEY idProveedor, " +
+                         "ADD CONSTRAINT idProveedor " +
+                         "FOREIGN KEY (idProveedor) REFERENCES proveedores(idProveedor) ON DELETE CASCADE";
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al configurar la clave externa: " + ex.getMessage());            
+        }
+        
+    }
 
     public void agregarProveedor(Proveedor proveedor) {
         //Agrega nuevo proveedor a la BD
@@ -54,16 +72,8 @@ public class ProveedorData {
     }
 
     public void eliminarProveedor(int idProveedor) {
-        //elimina proveedor con su ID
-        String sql = "DELETE FROM proveedores WHERE idProveedor=?";
+        //elimina proveedor
 
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, idProveedor);
-            ps.executeUpdate();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Proveedor: "+ex.getMessage());
-        }
     }
     
     
