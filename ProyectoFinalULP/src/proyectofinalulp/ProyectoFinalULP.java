@@ -29,7 +29,8 @@ MenuPrincipal menuPrincipal;
         
         // Crear una instancia de la pantalla de carga
         final pantallaDeCarga sp = new pantallaDeCarga();
-        
+         // Crear una instancia del menú principal
+                MenuPrincipal menuPrincipal = new MenuPrincipal();
         // Mostrar la pantalla de carga
         sp.setVisible(true);
         
@@ -62,8 +63,7 @@ MenuPrincipal menuPrincipal;
                 }
                 sp.setVisible(false);
                 
-                // Crear una instancia del menú principal
-                MenuPrincipal menuPrincipal = new MenuPrincipal();
+               
                 
                 // Mostrar el menú principal
                 menuPrincipal.setVisible(true);
