@@ -6,8 +6,12 @@
 package Vistas;
 
 import AccesoADatos.CompraData;
+import AccesoADatos.DetalleCompraData;
+import AccesoADatos.ProductoData;
 import AccesoADatos.ProveedorData;
 import Entidades.Compra;
+import Entidades.DetalleCompra;
+import Entidades.Producto;
 import Entidades.Proveedor;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -22,15 +26,23 @@ public class DetalleComprasView extends javax.swing.JInternalFrame {
      * Creates new form DetalleComprasView
      */
     ProveedorData provData;
-    DefaultTableModel modelo;
+    DetalleCompraData detCompData;
+    ProductoData prodData;
     CompraData compData;
+    DefaultTableModel modelo;
+    DefaultTableModel modeloDet;
+    
     public DetalleComprasView() {
         initComponents();
         provData = new ProveedorData();
         compData = new CompraData();
+        detCompData = new DetalleCompraData();
+        prodData = new ProductoData();
         modelo = new DefaultTableModel();
+        modeloDet = new DefaultTableModel();
         cargarCombo();
         armarTablaCompras();
+        armarTablaDetalles();
         int x = (int) (160/2);
         int y = (int) (15 / 2);
         this.setLocation(x, y);
@@ -60,6 +72,7 @@ public class DetalleComprasView extends javax.swing.JInternalFrame {
         jButtonSalir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButtonVerDetalle = new javax.swing.JButton();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,46 +137,66 @@ public class DetalleComprasView extends javax.swing.JInternalFrame {
         jScrollPane4.setViewportView(jTableDetalles);
 
         jButtonSalir.setText("SALIR");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Compras");
 
         jLabel3.setText("Detalles");
 
+        jButtonVerDetalle.setText("Ver Detalle");
+        jButtonVerDetalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVerDetalleActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonSalir)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jDateDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jDateHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(comboProveedores, 0, 146, Short.MAX_VALUE)))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(189, 189, 189)
-                        .addComponent(jLabel2)))
-                .addContainerGap(29, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonSalir)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(197, 197, 197))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jDateDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jDateHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(comboProveedores, 0, 146, Short.MAX_VALUE)))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonVerDetalle)
+                        .addGap(171, 171, 171))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(105, 105, 105))
+                .addGap(87, 87, 87))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -179,12 +212,14 @@ public class DetalleComprasView extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonVerDetalle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonSalir)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -192,10 +227,26 @@ public class DetalleComprasView extends javax.swing.JInternalFrame {
 
     private void comboProveedoresItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboProveedoresItemStateChanged
         limpiarRowsCompras();
+        limpiarRowsDetalles();
         int id = obtenerIdProveedor();
         Proveedor prov = provData.obtenerProveedorPorId(id);
         List<Compra> compras = compData.obtenerComprasPorProveedor(prov);
+        cargarComprasATablaCompras(compras);
     }//GEN-LAST:event_comboProveedoresItemStateChanged
+
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButtonSalirActionPerformed
+
+    private void jButtonVerDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerDetalleActionPerformed
+        limpiarRowsDetalles();
+        int row = jTableCompras.getSelectedRow();
+        int col = 0; //Es 0 porque ID esta en la primera Columna
+        Object idCompra = (jTableCompras.getModel().getValueAt(row, col)); 
+        Compra compra = compData.obtenerCompraPorId(Integer.parseInt(idCompra.toString()));
+        List<DetalleCompra> detCompras = detCompData.buscarDetallePorCompra(compra);
+        cargarDetallesATablaDetalles(detCompras);
+    }//GEN-LAST:event_jButtonVerDetalleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,19 +272,43 @@ public class DetalleComprasView extends javax.swing.JInternalFrame {
         jTableCompras.setModel(modelo);
     }
     
+    void armarTablaDetalles(){
+        modeloDet.setColumnCount(0);
+        modeloDet.addColumn("Cantidad");
+        modeloDet.addColumn("Precio");
+        modeloDet.addColumn("Producto");
+        jTableDetalles.setModel(modeloDet);
+    }
+    
     void limpiarRowsCompras(){
-        jTableCompras.removeAll();
+        modelo.setRowCount(0);
+        jTableCompras.setModel(modelo);
+    }
+    
+    void limpiarRowsDetalles(){
+        modeloDet.setRowCount(0);
+        jTableDetalles.setModel(modeloDet);
     }
     
     void cargarComprasATablaCompras(List<Compra> compras){
         for (Compra comp:compras){
-            
+            modelo.addRow(new Object[]{comp.getIdCompra(), comp.getFecha()});
         }
+        jTableCompras.setModel(modelo);
+    }
+    void cargarDetallesATablaDetalles(List<DetalleCompra> detalles){
+        for (DetalleCompra det:detalles){
+            modeloDet.addRow(new Object[]{det.getCantidad(),
+                det.getPrecioCosto(),
+                det.getProducto().getNombreProducto()});
+        }
+        jTableDetalles.setModel(modeloDet);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboProveedores;
     private javax.swing.JButton jButtonSalir;
+    private javax.swing.JButton jButtonVerDetalle;
     private com.toedter.calendar.JDateChooser jDateDesde;
     private com.toedter.calendar.JDateChooser jDateHasta;
     private javax.swing.JLabel jLabel1;
