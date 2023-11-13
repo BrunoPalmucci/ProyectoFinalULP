@@ -9,6 +9,15 @@ public class Proveedor {
     private String telefono;
     private boolean estado;
 
+    
+    
+    public Proveedor(String razonSocial, String domicilio, String telefono) {
+        this.razonSocial = razonSocial;
+        this.domicilio = domicilio;
+        this.telefono = telefono;
+    }
+    
+
     public Proveedor(int idProveedor, String razonSocial, String domicilio, String telefono, boolean estado) {
         this.idProveedor = idProveedor;
         this.razonSocial = razonSocial;
