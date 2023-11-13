@@ -221,7 +221,7 @@ public class proveedoresView extends javax.swing.JInternalFrame {
             String texDir = jtDireccion.getText();
             String texTel = jtTelefono.getText();
             
-            Proveedor NuevoProv = new Proveedor(texNom, texDir, texTel);
+            Proveedor NuevoProv = new Proveedor(texNom, texDir, texTel, true);
             pr.agregarProveedor(NuevoProv);
             completado=true;
             if (completado= true) {
@@ -240,32 +240,41 @@ public class proveedoresView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbGuardarMouseClicked
 
     private void jbModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbModificarMouseClicked
-                boolean completado=false;
-        try{
+        boolean completado = false;
+        try {
             String idProv = jtId.getText();
-            int idpr = Integer.parseInt(idProv);
+            int idProveedor = Integer.parseInt(idProv);
             String texNom = jtRazonSocial.getText();
             String texDir = jtDireccion.getText();
             String texTel = jtTelefono.getText();
-            
-            Proveedor NuevoProv = new Proveedor(idpr, texNom, texDir, texTel);
-            pr.modificarProveedor(NuevoProv);
-            completado=true;
-            if (completado= true) {
+
+            Proveedor nuevoProveedor = new Proveedor(idProveedor, texNom, texDir, texTel, true); // Establecer el estado como activo
+            pr.modificarProveedor(nuevoProveedor);
+            completado = true;
+
+            if (completado) {
                 limpiar();
-            }            
-        }catch (NullPointerException e) {
+            }
+        } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Campo vacío. Introduzca el dato correcto para buscar.");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar. Introduzca un dato válido.");
         }
-        catch(NumberFormatException e){
-           JOptionPane.showMessageDialog(null, "Error al buscar. Introduzca un dato válido.");
-
-        }
-
 
     }//GEN-LAST:event_jbModificarMouseClicked
 
     private void jbEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbEliminarMouseClicked
+        try {
+        String idProv = jtId.getText();
+        int idProveedor = Integer.parseInt(idProv);
+
+        // Inactivar el proveedor
+        pr.eliminarProveedor(idProveedor);
+
+        limpiar();
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Error al inactivar el proveedor. Introduzca un ID válido.");
+    }
 
     }//GEN-LAST:event_jbEliminarMouseClicked
 

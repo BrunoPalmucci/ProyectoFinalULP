@@ -36,7 +36,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
          jDesktopPane1.add(comp);
          jDesktopPane1.add(prodaped);
        
-       //  jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoJPG.jpg"))); //hacerlo a mano si falla en el init componets
+       jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoJPG.jpg"))); //hacerlo a mano si falla en el init componets
                                                                                                         //(PROBLEMA DE NEATBEANS al buscar la ruta, no lo encuentra)
     }
     
