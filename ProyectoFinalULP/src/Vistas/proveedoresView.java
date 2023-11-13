@@ -248,7 +248,7 @@ public class proveedoresView extends javax.swing.JInternalFrame {
             String texDir = jtDireccion.getText();
             String texTel = jtTelefono.getText();
 
-            Proveedor nuevoProveedor = new Proveedor(idProveedor, texNom, texDir, texTel, true); // Establecer el estado como activo
+            Proveedor nuevoProveedor = new Proveedor(idProveedor, texNom, texDir, texTel); // Establecer el estado como activo
             pr.modificarProveedor(nuevoProveedor);
             completado = true;
 
