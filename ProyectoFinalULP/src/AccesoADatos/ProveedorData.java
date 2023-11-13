@@ -39,20 +39,28 @@ public class ProveedorData {
     }
 
     public void modificarProveedor(Proveedor proveedor) {
-        //modifica proveedor existente
-        String sql = "UPDATE proveedores SET razonSocial=?, domicilio=?, telefono=?, estado=? WHERE idProveedor=?";
+    String sql = "UPDATE proveedores SET razonSocial=?, domicilio=?, telefono=?, estado=? WHERE idProveedor=?";
 
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, proveedor.getRazonSocial());
-            ps.setString(2, proveedor.getDomicilio());
-            ps.setString(3, proveedor.getTelefono());
-            ps.setBoolean(4, proveedor.isEstado());
-            ps.executeUpdate();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Proveedor: "+ex.getMessage());
-        }
+    try {
+        System.out.println("SQL a ejecutar: " + sql);
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, proveedor.getRazonSocial());
+        ps.setString(2, proveedor.getDomicilio());
+        ps.setString(3, proveedor.getTelefono());
+        ps.setBoolean(4, proveedor.isEstado());  // Establecer el estado
+        ps.setInt(5, proveedor.getIdProveedor());
+
+        System.out.println("Parámetros: " + proveedor.getRazonSocial() + ", " +
+                           proveedor.getDomicilio() + ", " + proveedor.getTelefono() + ", " +
+                           proveedor.isEstado() + ", " + proveedor.getIdProveedor());
+
+        ps.executeUpdate();
+    } catch (SQLException ex) {
+        ex.printStackTrace();  
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Proveedor: " + ex.getMessage());
     }
+}
 
     public void eliminarProveedor(int idProveedor) {
         // Elimina proveedor (actualiza el estado a 0)
