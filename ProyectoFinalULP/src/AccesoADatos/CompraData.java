@@ -200,11 +200,11 @@ public class CompraData {
             return productosMasComprados;
             }
         
-        public List<String> obtenerProductosPorDebajoDelStockMinimo(int stockMinimo) {
-               List<String> productosPorDebajoDelStockMinimo = new ArrayList<>();
+        public HashMap<String, Integer> obtenerProductosPorDebajoDelStockMinimo(int stockMinimo) {
+               HashMap<String, Integer> productosPorDebajoDelStockMinimo = new HashMap<String, Integer>();
 
             try {
-                String sql = "SELECT nombreProducto " +
+                String sql = "SELECT nombreProducto, stock " +
                              "FROM productos " +
                              "WHERE stock < ?";
 
@@ -215,7 +215,8 @@ public class CompraData {
 
                 while (rs.next()) {
                     String nombreProducto = rs.getString("nombreProducto");
-                    productosPorDebajoDelStockMinimo.add(nombreProducto);
+                    int stockRestante = rs.getInt("stock");
+                    productosPorDebajoDelStockMinimo.put(nombreProducto, stockRestante);
                 }
 
                 rs.close();

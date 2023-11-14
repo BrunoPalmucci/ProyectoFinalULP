@@ -5,6 +5,13 @@
  */
 package Vistas;
 
+import AccesoADatos.CompraData;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Valentino
@@ -14,11 +21,19 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
     /**
      * Creates new form ProdAPedirView
      */
+    
+    private DefaultTableModel modelo;
+    private CompraData compData;
+    
     public ProdAPedirView() {
         initComponents();
+        modelo = new DefaultTableModel();
+        compData = new CompraData();
         int x = (int) (160/2);
         int y = (int) (40 / 2);
         this.setLocation(x, y);
+        armarTablaProductos();
+        limpiarRows();
     }
 
     /**
@@ -31,7 +46,7 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         botonSalir = new javax.swing.JButton();
@@ -40,10 +55,15 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
 
         jLabel1.setText("PROD CON STOCK DEBAJO DE 3 UNIDADES");
 
-        jButton1.setText("BUSCAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBuscar.setText("BUSCAR");
+        jButtonBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonBuscarMouseClicked(evt);
+            }
+        });
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonBuscarActionPerformed(evt);
             }
         });
 
@@ -73,7 +93,7 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(147, 147, 147)
-                .addComponent(jButton1)
+                .addComponent(jButtonBuscar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
@@ -95,7 +115,7 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(jButtonBuscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -106,9 +126,9 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void botonSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMouseClicked
         // TODO add your handling code here:
@@ -116,6 +136,47 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_botonSalirMouseClicked
 
+    private void jButtonBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBuscarMouseClicked
+        HashMap<String, Integer> productos = compData.obtenerProductosPorDebajoDelStockMinimo(10);
+        cargarATabla(productos);
+    }//GEN-LAST:event_jButtonBuscarMouseClicked
+
+    private void cargarATabla(HashMap<String, Integer> productos){
+        limpiarRows();
+         TreeMap<String, Integer> sortedProductos = new TreeMap<>(new Comparator<String>() {
+        @Override
+        public int compare(String o1, String o2) {
+            int compare = productos.get(o2).compareTo(productos.get(o1));
+            if (compare == 0) return 1;  // Esto es para evitar que se sobrescriban claves con el mismo valor
+            else return compare;
+        }
+        });
+    
+    // Agregamos todos los productos al TreeMap
+    sortedProductos.putAll(productos);
+    
+    // Ahora iteramos sobre el TreeMap en lugar del HashMap
+    for (Map.Entry<String, Integer> entry : sortedProductos.entrySet()) {
+        modelo.addRow(new Object[]{
+        entry.getKey(),
+        entry.getValue()
+        });
+    }
+    
+     jTable1.setModel(modelo);
+    }
+    
+    void armarTablaProductos(){
+        modelo.setColumnCount(0);
+        modelo.addColumn("Nombre del Producto");
+        modelo.addColumn("Cantidad Restante");
+        jTable1.setModel(modelo);
+    }
+    
+    void limpiarRows(){
+        modelo.setRowCount(0);
+        jTable1.setModel(modelo);
+    }
     /**
      * @param args the command line arguments
      */
@@ -123,7 +184,7 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonSalir;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
