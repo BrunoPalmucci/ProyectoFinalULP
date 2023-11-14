@@ -306,10 +306,15 @@ public class comprarProdView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         
         try {
+            if (textoCantidad.getText().isEmpty() || textoPrecioCosto.getText().isEmpty() || textoIdProducto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.");
+            return;
+        }
         int idCompra = Integer.parseInt(comboIdCompra.getSelectedItem().toString());
         int cantidad = Integer.parseInt(textoCantidad.getText());
         double precioCosto = Double.parseDouble(textoPrecioCosto.getText());
         int idProducto = Integer.parseInt(textoIdProducto.getText());
+            
 
         Compra compra = compData.obtenerCompraPorId(idCompra);
         Producto producto = prodData.buscarProducto(idProducto);

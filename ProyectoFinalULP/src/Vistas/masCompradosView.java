@@ -178,20 +178,20 @@ public class masCompradosView extends javax.swing.JInternalFrame {
     void cargarTablaProducto(HashMap<String, Integer> producto){
         limpiarRows();
     
-    // Creamos un TreeMap con un comparador personalizado
+    
     TreeMap<String, Integer> sortedProductos = new TreeMap<>(new Comparator<String>() {
         @Override
         public int compare(String o1, String o2) {
             int compare = producto.get(o2).compareTo(producto.get(o1));
-            if (compare == 0) return 1;  // Esto es para evitar que se sobrescriban claves con el mismo valor
+            if (compare == 0) return 1; 
             else return compare;
         }
         });
     
-    // Agregamos todos los productos al TreeMap
+    
     sortedProductos.putAll(producto);
     
-    // Ahora iteramos sobre el TreeMap en lugar del HashMap
+    
     for (Map.Entry<String, Integer> entry : sortedProductos.entrySet()) {
         modelo.addRow(new Object[]{
         entry.getKey(),
