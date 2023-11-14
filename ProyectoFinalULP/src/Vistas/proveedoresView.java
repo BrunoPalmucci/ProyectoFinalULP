@@ -221,16 +221,21 @@ public class proveedoresView extends javax.swing.JInternalFrame {
             String texDir = jtDireccion.getText();
             String texTel = jtTelefono.getText();
             
+            if (texNom.isEmpty() || texDir.isEmpty() || texTel.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Introducir valores en los campos exceptuando al ID");
+                
+            }else{
+            
             Proveedor NuevoProv = new Proveedor(texNom, texDir, texTel, true);
             pr.agregarProveedor(NuevoProv);
             completado=true;
+            }
             if (completado= true) {
                 limpiar();
+                JOptionPane.showMessageDialog(null, "Proveedor guardado con exito");
             }
 
             
-        }catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(null, "Campo vacío. Introduzca el dato correcto para buscar.");
         }
         catch(NumberFormatException e){
            JOptionPane.showMessageDialog(null, "Error al buscar. Introduzca un dato válido.");
@@ -254,6 +259,7 @@ public class proveedoresView extends javax.swing.JInternalFrame {
 
             if (completado) {
                 limpiar();
+                JOptionPane.showMessageDialog(null, "Proveedor modificado con exito");
             }
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Campo vacío. Introduzca el dato correcto para buscar.");
@@ -272,6 +278,7 @@ public class proveedoresView extends javax.swing.JInternalFrame {
         pr.eliminarProveedor(idProveedor);
 
         limpiar();
+        JOptionPane.showMessageDialog(null, "Proveedor eliminado con exito");
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(null, "Error al inactivar el proveedor. Introduzca un ID válido.");
     }
