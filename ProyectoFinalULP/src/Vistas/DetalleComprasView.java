@@ -13,6 +13,11 @@ import Entidades.Compra;
 import Entidades.DetalleCompra;
 import Entidades.Producto;
 import Entidades.Proveedor;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import static java.time.temporal.TemporalQueries.localDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -231,7 +236,7 @@ public class DetalleComprasView extends javax.swing.JInternalFrame {
         int id = obtenerIdProveedor();
         Proveedor prov = provData.obtenerProveedorPorId(id);
         List<Compra> compras = compData.obtenerComprasPorProveedor(prov);
-        cargarComprasATablaCompras(compras);
+        cargarComprasATablaCompras(filtrarCompras(compras));
     }//GEN-LAST:event_comboProveedoresItemStateChanged
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
@@ -242,10 +247,12 @@ public class DetalleComprasView extends javax.swing.JInternalFrame {
         limpiarRowsDetalles();
         int row = jTableCompras.getSelectedRow();
         int col = 0; //Es 0 porque ID esta en la primera Columna
-        Object idCompra = (jTableCompras.getModel().getValueAt(row, col)); 
-        Compra compra = compData.obtenerCompraPorId(Integer.parseInt(idCompra.toString()));
-        List<DetalleCompra> detCompras = detCompData.buscarDetallePorCompra(compra);
-        cargarDetallesATablaDetalles(detCompras);
+        if(row != -1){
+            Object idCompra = (jTableCompras.getModel().getValueAt(row, col)); 
+            Compra compra = compData.obtenerCompraPorId(Integer.parseInt(idCompra.toString()));
+            List<DetalleCompra> detCompras = detCompData.buscarDetallePorCompra(compra);
+            cargarDetallesATablaDetalles(detCompras);
+        }
     }//GEN-LAST:event_jButtonVerDetalleActionPerformed
 
     /**
@@ -304,6 +311,58 @@ public class DetalleComprasView extends javax.swing.JInternalFrame {
         }
         jTableDetalles.setModel(modeloDet);
     }
+    
+    private List<Compra> filtrarCompras(List<Compra> compras){
+        List<Compra> comprasFiltradas = new ArrayList<Compra>();
+        boolean desdeEsNulo = false;
+        boolean hastaEsNulo = false;
+        Date fechaDesde = jDateDesde.getDate();
+        Date fechaHasta = jDateHasta.getDate();
+        
+        
+        if (fechaDesde==null){
+            desdeEsNulo = true;
+        }
+        
+        if(fechaHasta==null){
+            hastaEsNulo = true;
+        }
+        
+        if(desdeEsNulo && hastaEsNulo){
+            return compras;
+            
+        }else if(!desdeEsNulo && hastaEsNulo){
+            for(Compra comp:compras){
+                 Date date = Date.from(comp.getFecha().atStartOfDay(ZoneId.systemDefault()).toInstant());
+                 if(date.equals(fechaDesde) || date.after(fechaDesde)){
+                     comprasFiltradas.add(comp);
+                 }
+            }
+            return comprasFiltradas;
+            
+        }else if(desdeEsNulo && !hastaEsNulo){
+            for(Compra comp:compras){
+                 Date date = Date.from(comp.getFecha().atStartOfDay(ZoneId.systemDefault()).toInstant());
+                 if(date.equals(fechaHasta) || date.before(fechaHasta)){
+                     comprasFiltradas.add(comp);
+                 }
+            }
+            return comprasFiltradas;
+            
+        }else if(!desdeEsNulo && !hastaEsNulo){
+            for(Compra comp:compras){
+                 Date date = Date.from(comp.getFecha().atStartOfDay(ZoneId.systemDefault()).toInstant());
+                 if ((date.equals(fechaHasta) || date.before(fechaHasta)) &&
+                    (date.equals(fechaDesde) || date.after(fechaDesde))) {
+                     comprasFiltradas.add(comp);
+                    }
+            }
+            return comprasFiltradas;
+            
+        }else{
+            return null; // es imposible esto pero bueno jeje
+        }
+    } 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboProveedores;
