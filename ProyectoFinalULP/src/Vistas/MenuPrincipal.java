@@ -18,6 +18,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private proveedoresView prov= new proveedoresView();
     private comprarProdView comp= new comprarProdView();
     private ProdAPedirView prodaped = new ProdAPedirView();
+    private comprasAproveedorView comAPed = new comprasAproveedorView();
+    private masCompradosView masComp = new masCompradosView();
     
     
     
@@ -35,6 +37,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
          jDesktopPane1.add(prov);
          jDesktopPane1.add(comp);
          jDesktopPane1.add(prodaped);
+         jDesktopPane1.add(comAPed);
+         jDesktopPane1.add(masComp);
        
 
 //       jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoJPG.jpg"))); //hacerlo a mano si falla en el init componets
@@ -65,6 +69,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmProducto = new javax.swing.JMenu();
         jmCompra = new javax.swing.JMenu();
         jmProveedores = new javax.swing.JMenu();
+        masComprados = new javax.swing.JMenu();
+        comprasAproveedor = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -132,6 +138,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(jmProveedores);
+
+        masComprados.setText("Mas Comprados");
+        masComprados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                masCompradosMouseClicked(evt);
+            }
+        });
+        masComprados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                masCompradosActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(masComprados);
+
+        comprasAproveedor.setText("Compras A proveedor");
+        comprasAproveedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comprasAproveedorMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(comprasAproveedor);
 
         setJMenuBar(jMenuBar1);
 
@@ -214,6 +241,37 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jmDetalleCompraMouseClicked
 
+    private void masCompradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masCompradosActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_masCompradosActionPerformed
+
+    private void masCompradosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_masCompradosMouseClicked
+        // TODO add your handling code here:
+        limpiar();
+        if (masComp.isClosed()) {
+            jDesktopPane1.remove(masComp);
+            masComp = new masCompradosView();
+            jDesktopPane1.add(masComp);
+        }
+        masComp.setVisible(true);
+        jDesktopPane1.moveToFront(masComp);
+        
+    }//GEN-LAST:event_masCompradosMouseClicked
+
+    private void comprasAproveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comprasAproveedorMouseClicked
+        // TODO add your handling code here:
+        limpiar();
+        if (comAPed.isClosed()) {
+            jDesktopPane1.remove(comAPed);
+            comAPed = new comprasAproveedorView();
+            jDesktopPane1.add(comAPed);
+                    
+        }
+        comAPed.setVisible(true);
+        jDesktopPane1.moveToFront(comAPed);
+    }//GEN-LAST:event_comprasAproveedorMouseClicked
+
     private void limpiar(){
         dtc.setVisible(false);
         //dtc.dispose();
@@ -222,7 +280,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         comp.setVisible(false);
         //comp.dispose();
         prodaped.setVisible(false);
-        
+        masComp.setVisible(false);
+        comAPed.setVisible(false);
         //prodaped.dispose();
         //jDesktopPane1.removeAll();
         //jDesktopPane1.repaint();
@@ -263,6 +322,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu comprasAproveedor;
     private javax.swing.JLabel fondoMenu;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
@@ -273,5 +333,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jmDetalleCompra;
     private javax.swing.JMenu jmProducto;
     private javax.swing.JMenu jmProveedores;
+    private javax.swing.JMenu masComprados;
     // End of variables declaration//GEN-END:variables
 }
