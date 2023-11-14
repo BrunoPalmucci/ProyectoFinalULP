@@ -51,6 +51,7 @@ public class proveedoresView extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jtRazonSocial = new javax.swing.JTextField();
         jbNuevo = new javax.swing.JButton();
+        jrbEstado = new javax.swing.JRadioButton();
 
         jTextField1.setText("jTextField1");
 
@@ -108,25 +109,17 @@ public class proveedoresView extends javax.swing.JInternalFrame {
             }
         });
 
+        jrbEstado.setText("ESTADO");
+        jrbEstado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jrbEstadoMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbGuardar)
-                        .addGap(53, 53, 53)
-                        .addComponent(jbModificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbEliminar)
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -152,6 +145,24 @@ public class proveedoresView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbSalir)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jbGuardar)
+                        .addGap(53, 53, 53)
+                        .addComponent(jbModificar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbEliminar)
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jrbEstado)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,16 +182,18 @@ public class proveedoresView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jrbEstado)
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbGuardar)
                     .addComponent(jbModificar)
                     .addComponent(jbEliminar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbSalir)
                     .addComponent(jbNuevo))
@@ -199,6 +212,7 @@ public class proveedoresView extends javax.swing.JInternalFrame {
             jtRazonSocial.setText(prov.getRazonSocial());
             jtDireccion.setText(prov.getDomicilio());
             jtTelefono.setText(prov.getTelefono());
+            jrbEstado.setSelected(prov.isEstado());
             habilitarCampos();
         }catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Campo vacío. Introduzca el dato correcto para buscar.");
@@ -220,13 +234,13 @@ public class proveedoresView extends javax.swing.JInternalFrame {
             String texNom = jtRazonSocial.getText();
             String texDir = jtDireccion.getText();
             String texTel = jtTelefono.getText();
-            
+            boolean estadoProveedor = jrbEstado.isSelected();
             if (texNom.isEmpty() || texDir.isEmpty() || texTel.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Introducir valores en los campos exceptuando al ID");
                 
             }else{
             
-            Proveedor NuevoProv = new Proveedor(texNom, texDir, texTel, true);
+            Proveedor NuevoProv = new Proveedor(texNom, texDir, texTel, estadoProveedor);
             pr.agregarProveedor(NuevoProv);
             completado=true;
             }
@@ -252,9 +266,11 @@ public class proveedoresView extends javax.swing.JInternalFrame {
             String texNom = jtRazonSocial.getText();
             String texDir = jtDireccion.getText();
             String texTel = jtTelefono.getText();
+            boolean estadoActual = jrbEstado.isSelected();
 
-            Proveedor nuevoProveedor = new Proveedor(idProveedor, texNom, texDir, texTel); // Establecer el estado como activo
-            pr.modificarProveedor(nuevoProveedor);
+        Proveedor nuevoProveedor = new Proveedor(idProveedor, texNom, texDir, texTel, estadoActual);
+        pr.modificarProveedor(nuevoProveedor);
+
             completado = true;
 
             if (completado) {
@@ -290,11 +306,17 @@ public class proveedoresView extends javax.swing.JInternalFrame {
         limpiar();
     }//GEN-LAST:event_jbNuevoMouseClicked
 
+    private void jrbEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrbEstadoMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jrbEstadoMouseClicked
+
     public void limpiar(){
         jtId.setText("");
         jtRazonSocial.setText("");
         jtDireccion.setText("");
         jtTelefono.setText("");
+        jrbEstado.setSelected(false);
     }
     public void habilitarCampos(){
         jtRazonSocial.setEnabled(true);
@@ -325,6 +347,7 @@ public class proveedoresView extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbNuevo;
     private javax.swing.JButton jbSalir;
+    private javax.swing.JRadioButton jrbEstado;
     private javax.swing.JTextField jtDireccion;
     private javax.swing.JTextField jtId;
     private javax.swing.JTextField jtRazonSocial;
