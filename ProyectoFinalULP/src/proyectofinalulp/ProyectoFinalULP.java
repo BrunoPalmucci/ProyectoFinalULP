@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import splashScreen.pantallaDeCarga;
 import Vistas.MenuPrincipal;
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 public class ProyectoFinalULP {
@@ -37,9 +38,12 @@ MenuPrincipal menuPrincipal;
         // Crear un nuevo hilo para actualizar la interfaz gráfica
         new Thread(new Runnable() {
             public void run() {
+                int variabilidadCarga;
+                Random rand = new Random();
                 try {
                     for(int i = 0; i<101;i++){
-                        Thread.sleep(30);
+                        variabilidadCarga = rand.nextInt(40)+1;
+                        Thread.sleep(variabilidadCarga);
                         sp.setPorcentajeCargado(i+ "%");
                         if (i == 10) {
                             sp.setTextoCargando("Cargando módulos...");
