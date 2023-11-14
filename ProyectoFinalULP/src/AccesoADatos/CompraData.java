@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -165,8 +166,8 @@ public class CompraData {
         }
         
         
-        public List<String> obtenerProductosMasCompradosEntreFechas(LocalDate fechaInicio, LocalDate fechaFin) {
-               List<String> productosMasComprados = new ArrayList<>();
+        public HashMap<String, Integer> obtenerProductosMasCompradosEntreFechas(LocalDate fechaInicio, LocalDate fechaFin) {
+               HashMap<String, Integer> productosMasComprados = new HashMap<String, Integer>();
 
             try {
                 String sql = "SELECT p.nombreProducto, SUM(dc.cantidad) AS totalComprado " +
@@ -185,7 +186,9 @@ public class CompraData {
 
                 while (rs.next()) {
                     String nombreProducto = rs.getString("nombreProducto");
-                    productosMasComprados.add(nombreProducto);
+                    int cantidadComprada = rs.getInt("totalComprado");
+                    
+                    productosMasComprados.put(nombreProducto,cantidadComprada );
                 }
 
                 rs.close();

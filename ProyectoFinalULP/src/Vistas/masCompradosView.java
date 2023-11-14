@@ -5,17 +5,36 @@
  */
 package Vistas;
 
+import AccesoADatos.CompraData;
+import Entidades.Compra;
+import Entidades.Producto;
+import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author juan_
  */
 public class masCompradosView extends javax.swing.JInternalFrame {
-
+    private CompraData compData;
+    private DefaultTableModel modelo;       
     /**
      * Creates new form masCompradosView
      */
     public masCompradosView() {
         initComponents();
+        modelo = new DefaultTableModel();
+        armarTablaProductos();
+        
+        
+        
+        compData = new CompraData();
         
         int x = (int) (160/2);
         int y = (int) (40 / 2);
@@ -129,9 +148,24 @@ public class masCompradosView extends javax.swing.JInternalFrame {
 
     private void botonBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBuscarMouseClicked
         // TODO add your handling code here:
+        try {
+            java.util.Date fechaUno = fechaUNO.getDate();
+        java.util.Date fechaDos = fechaDOS.getDate();
         
+        java.sql.Date sqlDate = new java.sql.Date(fechaUno.getTime());
+        java.sql.Date sqlDate2 = new java.sql.Date(fechaDos.getTime());
         
+        LocalDate fecha = sqlDate.toLocalDate();
+        LocalDate fecha2 = sqlDate2.toLocalDate();
         
+        HashMap<String, Integer> productos = compData.obtenerProductosMasCompradosEntreFechas(fecha, fecha2);
+        
+        cargarTablaProducto(productos);
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Error, seleccione una fecha válida.");
+        }
+        
+  
     }//GEN-LAST:event_botonBuscarMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -141,7 +175,48 @@ public class masCompradosView extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jButton1MouseClicked
 
+    void cargarTablaProducto(HashMap<String, Integer> producto){
+        limpiarRows();
+    
+    // Creamos un TreeMap con un comparador personalizado
+    TreeMap<String, Integer> sortedProductos = new TreeMap<>(new Comparator<String>() {
+        @Override
+        public int compare(String o1, String o2) {
+            int compare = producto.get(o2).compareTo(producto.get(o1));
+            if (compare == 0) return 1;  // Esto es para evitar que se sobrescriban claves con el mismo valor
+            else return compare;
+        }
+        });
+    
+    // Agregamos todos los productos al TreeMap
+    sortedProductos.putAll(producto);
+    
+    // Ahora iteramos sobre el TreeMap en lugar del HashMap
+    for (Map.Entry<String, Integer> entry : sortedProductos.entrySet()) {
+        modelo.addRow(new Object[]{
+        entry.getKey(),
+        entry.getValue()
+        });
+    }
+    
+     tablaProductos.setModel(modelo);
+    }
+    
 
+     void armarTablaProductos(){
+        modelo.setColumnCount(0);
+        modelo.addColumn("Nombre del Producto");
+        modelo.addColumn("Cantidad");
+        tablaProductos.setModel(modelo);
+       
+    }
+    
+    void limpiarRows(){
+        modelo.setRowCount(0);
+        tablaProductos.setModel(modelo);
+    }
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonBuscar;
     private com.toedter.calendar.JDateChooser fechaDOS;
