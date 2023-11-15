@@ -144,6 +144,7 @@ public class DetalleComprasView extends javax.swing.JInternalFrame {
         jScrollPane4.setViewportView(jTableDetalles);
 
         jButtonSalir.setText("SALIR");
+        jButtonSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalirActionPerformed(evt);
@@ -155,6 +156,7 @@ public class DetalleComprasView extends javax.swing.JInternalFrame {
         jLabel3.setText("Detalles");
 
         jButtonVerDetalle.setText("Ver Detalle");
+        jButtonVerDetalle.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonVerDetalle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVerDetalleActionPerformed(evt);
@@ -162,6 +164,7 @@ public class DetalleComprasView extends javax.swing.JInternalFrame {
         });
 
         jButtonActualizar.setText("Actualizar");
+        jButtonActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonActualizarMouseClicked(evt);

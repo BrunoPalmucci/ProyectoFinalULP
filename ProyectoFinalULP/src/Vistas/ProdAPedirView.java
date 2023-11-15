@@ -76,6 +76,7 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
         jLabel1.setText("PROD CON STOCK DEBAJO DE 3 UNIDADES");
 
         jButtonBuscar.setText("BUSCAR");
+        jButtonBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonBuscarMouseClicked(evt);
@@ -101,6 +102,7 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTable1);
 
         botonSalir.setText("Salir");
+        botonSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonSalirMouseClicked(evt);
@@ -110,6 +112,7 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
         jLabel2.setText("Registrar Producto");
 
         jButtonRegistrar.setText("Registrar");
+        jButtonRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonRegistrarMouseClicked(evt);
@@ -135,6 +138,7 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
         jRadioEstado.setSelected(true);
 
         jButtonModificar.setText("Modificar");
+        jButtonModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonModificar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonModificarMouseClicked(evt);

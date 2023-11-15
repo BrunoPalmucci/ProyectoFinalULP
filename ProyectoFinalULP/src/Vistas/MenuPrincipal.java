@@ -93,6 +93,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
 
         jmDetalleCompra.setText("Detalle Compras");
+        jmDetalleCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmDetalleCompra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jmDetalleCompraMouseClicked(evt);
@@ -106,6 +107,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jmDetalleCompra);
 
         jmProducto.setText("Productos");
+        jmProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmProducto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jmProductoMouseClicked(evt);
@@ -119,6 +121,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jmProducto);
 
         jmCompra.setText("Compras");
+        jmCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmCompra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jmCompraMouseClicked(evt);
@@ -132,6 +135,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jmCompra);
 
         jmProveedores.setText("Proveedores");
+        jmProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jmProveedoresMouseClicked(evt);
@@ -145,6 +149,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jmProveedores);
 
         masComprados.setText("Mas Comprados");
+        masComprados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         masComprados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 masCompradosMouseClicked(evt);
@@ -158,6 +163,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(masComprados);
 
         comprasAproveedor.setText("Compras A proveedor");
+        comprasAproveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         comprasAproveedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 comprasAproveedorMouseClicked(evt);

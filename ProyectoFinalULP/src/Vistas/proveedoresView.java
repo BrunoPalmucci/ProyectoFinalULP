@@ -66,6 +66,7 @@ public class proveedoresView extends javax.swing.JInternalFrame {
         jLabel4.setText("TELEFONO");
 
         jbBuscar.setText("BUSCAR");
+        jbBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBuscarActionPerformed(evt);
@@ -73,6 +74,7 @@ public class proveedoresView extends javax.swing.JInternalFrame {
         });
 
         jbGuardar.setText("GUARDAR");
+        jbGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jbGuardarMouseClicked(evt);
@@ -80,6 +82,7 @@ public class proveedoresView extends javax.swing.JInternalFrame {
         });
 
         jbModificar.setText("MODIFICAR");
+        jbModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbModificar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jbModificarMouseClicked(evt);
@@ -87,6 +90,7 @@ public class proveedoresView extends javax.swing.JInternalFrame {
         });
 
         jbEliminar.setText("ELIMINAR");
+        jbEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jbEliminarMouseClicked(evt);
@@ -94,6 +98,7 @@ public class proveedoresView extends javax.swing.JInternalFrame {
         });
 
         jbSalir.setText("SALIR");
+        jbSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jbSalirMouseClicked(evt);
@@ -103,6 +108,7 @@ public class proveedoresView extends javax.swing.JInternalFrame {
         jLabel5.setText("RAZON SOCIAL");
 
         jbNuevo.setText("NUEVO");
+        jbNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jbNuevoMouseClicked(evt);

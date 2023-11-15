@@ -67,6 +67,7 @@ public class comprasAproveedorView extends javax.swing.JInternalFrame {
         jLabel2.setText("Proveedores:");
 
         botonBuscar.setText("Buscar");
+        botonBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonBuscarMouseClicked(evt);

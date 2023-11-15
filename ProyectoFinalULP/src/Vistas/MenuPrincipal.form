@@ -18,6 +18,9 @@
         <Menu class="javax.swing.JMenu" name="jmDetalleCompra">
           <Properties>
             <Property name="text" type="java.lang.String" value="Detalle Compras"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jmDetalleCompraMouseClicked"/>
@@ -27,6 +30,9 @@
         <Menu class="javax.swing.JMenu" name="jmProducto">
           <Properties>
             <Property name="text" type="java.lang.String" value="Productos"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jmProductoMouseClicked"/>
@@ -36,6 +42,9 @@
         <Menu class="javax.swing.JMenu" name="jmCompra">
           <Properties>
             <Property name="text" type="java.lang.String" value="Compras"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jmCompraMouseClicked"/>
@@ -45,6 +54,9 @@
         <Menu class="javax.swing.JMenu" name="jmProveedores">
           <Properties>
             <Property name="text" type="java.lang.String" value="Proveedores"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jmProveedoresMouseClicked"/>
@@ -54,6 +66,9 @@
         <Menu class="javax.swing.JMenu" name="masComprados">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mas Comprados"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="masCompradosMouseClicked"/>
@@ -63,6 +78,9 @@
         <Menu class="javax.swing.JMenu" name="comprasAproveedor">
           <Properties>
             <Property name="text" type="java.lang.String" value="Compras A proveedor"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="comprasAproveedorMouseClicked"/>
