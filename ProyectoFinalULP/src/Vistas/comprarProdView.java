@@ -327,6 +327,7 @@ public class comprarProdView extends javax.swing.JInternalFrame {
                  producto.setStock(producto.getStock()-cantidad);
                  prodData.modificarProducto(producto);
                  detalle.setProducto(producto);
+                 limpiarCampos();
              if (producto !=null) {
                  detCompraData.agregarDetalleCompra(detalle);
                  JOptionPane.showMessageDialog(null, "Compra realizada con éxito.");
@@ -351,6 +352,11 @@ public class comprarProdView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_textoCantidadKeyTyped
 
+    private void limpiarCampos(){
+        textoCantidad.setText("");
+        textoIdProducto.setText("");
+        textoPrecioCosto.setText("");
+    }
     private void textoPrecioCostoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoPrecioCostoKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
