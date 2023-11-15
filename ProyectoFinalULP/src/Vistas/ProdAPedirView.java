@@ -67,6 +67,9 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
         jTextPrecio = new javax.swing.JTextField();
         jTextStock = new javax.swing.JTextField();
         jRadioEstado = new javax.swing.JRadioButton();
+        jButtonModificar = new javax.swing.JButton();
+        jButtonBuscarProd = new javax.swing.JButton();
+        jTextbuscar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -131,6 +134,20 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
 
         jRadioEstado.setSelected(true);
 
+        jButtonModificar.setText("Modificar");
+        jButtonModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonModificarMouseClicked(evt);
+            }
+        });
+
+        jButtonBuscarProd.setText("Buscar");
+        jButtonBuscarProd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonBuscarProdMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,16 +165,18 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addComponent(jButtonRegistrar)
+                                .addGap(84, 84, 84)
+                                .addComponent(jButtonModificar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(botonSalir)))
                         .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -174,17 +193,23 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
                             .addComponent(jTextDescripcion)
                             .addComponent(jTextPrecio))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioEstado)
-                                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextStock, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36))))))
+                                .addGap(36, 36, 36))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jRadioEstado))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButtonBuscarProd)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextbuscar)))
+                                .addContainerGap())))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonBuscar)
@@ -219,14 +244,17 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
                         .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(jTextPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBuscarProd)
+                    .addComponent(jTextbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonSalir)
-                    .addComponent(jButtonRegistrar))
+                    .addComponent(jButtonRegistrar)
+                    .addComponent(jButtonModificar))
                 .addContainerGap())
         );
 
@@ -269,6 +297,54 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jTextPrecioKeyTyped
+
+    private void jButtonModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonModificarMouseClicked
+            
+                    
+        try {
+           Producto producto = prodData.buscarProducto(Integer.parseInt(jTextbuscar.getText()));
+            if (producto!=null) {
+               String nombre = jTextNombre.getText();
+            String descripcion = jTextDescripcion.getText();
+            double precio = Double.parseDouble(jTextPrecio.getText());
+            int stock = Integer.parseInt(jTextStock.getText());
+            boolean estado = jRadioEstado.isSelected();
+            int id = Integer.parseInt(jTextbuscar.getText());
+            
+            Producto prod = new Producto(id,nombre,descripcion,precio,stock,estado);
+            prodData.modificarProducto(prod);
+            limpiarCampos();
+            JOptionPane.showMessageDialog(this, "Producto modificado."); 
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "No se pudo modificar el producto.");
+        }
+            
+        
+    }//GEN-LAST:event_jButtonModificarMouseClicked
+
+    private void jButtonBuscarProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBuscarProdMouseClicked
+        
+        Producto prod = prodData.buscarProducto(Integer.parseInt(jTextbuscar.getText()));
+        if (prod != null) {
+            String nombre = prod.getNombreProducto();
+            String descripcion = prod.getDescripcion();
+            Double precio = prod.getPrecioActual();
+            boolean estado = prod.isEstado();
+            Integer stock = prod.getStock();
+            int id = prod.getIdProducto();
+            jTextNombre.setText(nombre);
+            jTextDescripcion.setText(descripcion);
+            jTextPrecio.setText(precio.toString());
+            jRadioEstado.setSelected(estado);
+            jTextStock.setText(stock.toString());
+            JOptionPane.showMessageDialog(this, "Producto encontrado");
+            
+        }else JOptionPane.showMessageDialog(this, "No se pudo encontrar el producto");
+        
+        
+    }//GEN-LAST:event_jButtonBuscarProdMouseClicked
 
     private void limpiarCampos(){
         jTextDescripcion.setText("");
@@ -321,6 +397,8 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonSalir;
     private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonBuscarProd;
+    private javax.swing.JButton jButtonModificar;
     private javax.swing.JButton jButtonRegistrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -336,5 +414,6 @@ public class ProdAPedirView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextNombre;
     private javax.swing.JTextField jTextPrecio;
     private javax.swing.JTextField jTextStock;
+    private javax.swing.JTextField jTextbuscar;
     // End of variables declaration//GEN-END:variables
 }

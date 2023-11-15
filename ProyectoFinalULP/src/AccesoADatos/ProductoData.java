@@ -66,15 +66,38 @@ public class ProductoData {
                     prod.setPrecioActual(rs.getInt("precioActual"));
                     prod.setStock(rs.getInt("stock"));
                     prod.setEstado(true);
-       
-                }else {
-                    JOptionPane.showMessageDialog(null, "No existe el producto");
-                    ps.close();
+                    
                 }
+                
+                else {
+                    JOptionPane.showMessageDialog(null, "No existe el producto");
+                    
+                }
+                ps.close();
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Producto. "+ex.getMessage()); 
             }
             return prod;
         }
         
+        public void modificarProducto(Producto producto){
+            String sql = "UPDATE `productos` SET `nombreProducto`=?,`descripcion`=?,`precioActual`=?,`stock`=?,`estado`= ? WHERE idProducto = ?";
+            PreparedStatement ps = null;
+            try {
+                ps= con.prepareStatement(sql);
+                ps.setString(1, producto.getNombreProducto());
+                ps.setString(2, producto.getDescripcion());
+                ps.setDouble(3, producto.getPrecioActual());
+                ps.setInt(4, producto.getStock());
+                ps.setBoolean(5, producto.isEstado());
+                ps.setInt(6, producto.getIdProducto());
+                ps.executeUpdate();
+                
+                 ps.close();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Hubo un error.");
+                
+            }
+            
+        }
     }       

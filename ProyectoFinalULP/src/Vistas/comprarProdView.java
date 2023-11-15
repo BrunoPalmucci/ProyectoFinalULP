@@ -318,24 +318,24 @@ public class comprarProdView extends javax.swing.JInternalFrame {
 
         Compra compra = compData.obtenerCompraPorId(idCompra);
         Producto producto = prodData.buscarProducto(idProducto);
-
-        DetalleCompra detalle = new DetalleCompra();
-        detalle.setCompra(compra);
-        detalle.setCantidad(cantidad);
-        detalle.setPrecioCosto(precioCosto);
-
-       //detalle.getProducto().setIdProducto(idProducto);
-       //detalle.setIdProducto(producto.getIdProducto());
-       
-         detalle.setProducto(producto);
+            
+            if (producto.getStock()>=cantidad) {
+                 DetalleCompra detalle = new DetalleCompra();
+                 detalle.setCompra(compra);
+                 detalle.setCantidad(cantidad);
+                 detalle.setPrecioCosto(precioCosto);
+                 producto.setStock(producto.getStock()-cantidad);
+                 prodData.modificarProducto(producto);
+                 detalle.setProducto(producto);
              if (producto !=null) {
                  detCompraData.agregarDetalleCompra(detalle);
                  JOptionPane.showMessageDialog(null, "Compra realizada con éxito.");
              }
              else JOptionPane.showMessageDialog(null, "Error");
-             
+            }else JOptionPane.showMessageDialog(this, "Stock insuficiente en el producto"+producto.getNombreProducto());
+      
         } catch (Exception e) {
-            
+            JOptionPane.showMessageDialog(this, "Error a comprar producto.");
         }
        
         
